@@ -111,5 +111,7 @@ public class Positions implements Serializable {
     public String toString() {
         return "dal.Positions[ positionId=" + positionId + " ]";
     }
-    
+    public String toHtmlString() {
+        return "dal.Positions[ positionId=" + positionId + " ] </li>";
+    }
 }

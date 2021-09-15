@@ -23,6 +23,8 @@ public interface UsersFacadeLocal {
     void remove(Users users);
 
     Users find(Object id);
+    
+    List<Users> findByUserLogin(String login);
 
     List<Users> findAll();
 
