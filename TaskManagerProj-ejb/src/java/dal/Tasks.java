@@ -195,4 +195,7 @@ public class Tasks implements Serializable {
         return "dal.Tasks[ taskId=" + taskId + " ]";
     }
     
+    public String toHtmlString() {
+        return "<li> dal.Tasks[ taskId=" + taskId + " ] </li>";
+    }
 }

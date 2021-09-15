@@ -18,12 +18,12 @@ public interface ReadUserBeanLocal {
     
     List <Users> findAllusers ();
     
-    Users findUser(String login);
+    Users findByUserLogin(String login);
     
     List<Users> findByRegex(String regex);
     
     //check user by login
-    boolean userLoginMatches (String login);
+    //boolean userLoginMatches (String login);
         
     //get users passwd, salt, role by login
     //List<Users> getPassSaltRole (String login);

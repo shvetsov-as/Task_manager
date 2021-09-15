@@ -13,6 +13,19 @@
     </head>
     <body>
         <h1>Admin menu page</h1>
+        
+        
+        <form method="GET" action="AdmServlet">
+          <input type="submit" value="test" name="test" />  
+        </form>
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/logout">Logout</a>
     </body>
 </html>

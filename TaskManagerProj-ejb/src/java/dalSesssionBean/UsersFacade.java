@@ -6,9 +6,12 @@
 package dalSesssionBean;
 
 import dal.Users;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,12 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
         super(Users.class);
     }
     
+    @Override
+    public List<Users> findByUserLogin(String login) {
+        List <Users> users = new ArrayList<>();
+        Query findByUserLogin = em.createNamedQuery("Users.findByUserLogin");
+        findByUserLogin.setParameter("userLogin", login);
+        users = findByUserLogin.getResultList();
+        return users;
+    }
 }

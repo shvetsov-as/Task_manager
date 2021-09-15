@@ -166,4 +166,8 @@ public class Employee implements Serializable {
         return "dal.Employee[ empId=" + empId + " ]";
     }
     
+    public String toHtmlString() {
+        return "<li> dal.Employee[ empId=" + empId + " ] </li>";
+    }
+    
 }

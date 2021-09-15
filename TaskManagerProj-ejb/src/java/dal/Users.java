@@ -155,5 +155,7 @@ public class Users implements Serializable {
     public String toString() {
         return "dal.Users[ userId=" + userId + " ]";
     }
-    
+    public String toHtmlString() {
+        return "<li> dal.Users[ userId " + userId + " Login " + userLogin + " userMark " + userMark + " userRole " + userRole + " ] </li>";
+    }
 }
