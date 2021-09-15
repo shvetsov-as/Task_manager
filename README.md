@@ -1,4 +1,4 @@
-# TaskManager
-My graduation project
-login:password
-Admin:Admin001
+# Task Manager 
+**My graduation project**  
+login : password  
+**Admin : Admin001** 
