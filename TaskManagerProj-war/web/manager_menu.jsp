@@ -12,7 +12,16 @@
         <title> Manager </title>
     </head>
     <body>
-        <h1>Manager menu page</h1>
-        <a href="/logout">Logout</a>
+        
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        
+        <h3>Manager menu page</h3>
+        <form method="GET" action="LogoutServlet">
+            <input type="submit" value="Выйти" name="logout" />  
+        </form>
+        
+        
+        
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dalSesssionBean;
+package dalSessionBean;
 
-import dal.Employee;
+import dal.Tasks;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author User
  */
 @Local
-public interface EmployeeFacadeLocal {
+public interface TasksFacadeLocal {
 
-    void create(Employee employee);
+    void create(Tasks tasks);
 
-    void edit(Employee employee);
+    void edit(Tasks tasks);
 
-    void remove(Employee employee);
+    void remove(Tasks tasks);
 
-    Employee find(Object id);
+    Tasks find(Object id);
 
-    List<Employee> findAll();
+    List<Tasks> findAll();
 
-    List<Employee> findRange(int[] range);
+    List<Tasks> findRange(int[] range);
 
     int count();
     

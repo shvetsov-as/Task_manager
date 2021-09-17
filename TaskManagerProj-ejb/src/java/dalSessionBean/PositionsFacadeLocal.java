@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dalSesssionBean;
+package dalSessionBean;
 
 import dal.Positions;
 import java.util.List;
@@ -25,6 +25,8 @@ public interface PositionsFacadeLocal {
     Positions find(Object id);
 
     List<Positions> findAll();
+    
+    List<Positions> findPosID();
 
     List<Positions> findRange(int[] range);
 

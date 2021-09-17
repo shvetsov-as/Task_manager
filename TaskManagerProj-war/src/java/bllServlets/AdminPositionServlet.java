@@ -3,10 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sessionServlets;
+package bllServlets;
 
+import dal.Positions;
+import dalSessionBean.PositionsFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +23,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "AdminServlet", urlPatterns = {"/AdminServlet"})
-public class AdminServlet extends HttpServlet {
+@WebServlet(name = "AdminPositionServlet", urlPatterns = {"/AdminPositionServlet"})
+public class AdminPositionServlet extends HttpServlet {
+
+    @EJB
+    private PositionsFacadeLocal positionsFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,35 +42,36 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
         HttpSession session = request.getSession();
         
-        String test = request.getParameter("test");
-        String test1 = (String)session.getAttribute("userToHtml");
+        String allPositions = request.getParameter("allPositions");
+        List <Positions> positionRes = new ArrayList <>();
         
-        if(test != null){
         
-
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdmServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdmServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Servlet AdmServlet at " + test1 + "</h1>");
-            
-            
-            
-            
-            
-            
-            out.println("</body>");
-            out.println("</html>");
+        if(allPositions != null){
+            positionRes = positionsFacade.findAll();
+            request.setAttribute("answer", positionRes);
+            request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);
         }
-        }//end test if
+ 
+        
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet AdminPositionServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet AdminPositionServlet at " + request.getContextPath() + "</h1>");
+//            
+//            for (Positions p : positionRes){
+//               out.println("<h1>Servlet AdminPositionServlet at " + p.toHtmlString() + "</h1>"); 
+//            }
+//            
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
