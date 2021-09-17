@@ -7,7 +7,7 @@ package bll_user;
 
 import dal.Role;
 import dal.Users;
-import dalSesssionBean.UsersFacadeLocal;
+import dalSessionBean.UsersFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;

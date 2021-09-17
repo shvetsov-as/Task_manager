@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dalSesssionBean;
+package dalSessionBean;
 
 import dal.Positions;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,15 @@ public class PositionsFacade extends AbstractFacade<Positions> implements Positi
     public PositionsFacade() {
         super(Positions.class);
     }
-    
+
+    @Override
+    public List<Positions> findPosID() {
+
+        List<Positions> positions = new ArrayList<>();
+        Query findPosID = em.createNamedQuery("Positions.findAll");
+        //findPosID.setParameter(Positions.class);
+        positions = findPosID.getResultList();
+        return positions;
+    }
+
 }

@@ -6,7 +6,7 @@
 package bllServlets;
 
 import dal.Positions;
-import dalSesssionBean.PositionsFacadeLocal;
+import dalSessionBean.PositionsFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

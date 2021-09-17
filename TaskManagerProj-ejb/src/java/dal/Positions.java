@@ -112,6 +112,6 @@ public class Positions implements Serializable {
         return "dal.Positions[ positionId=" + positionId + " ]";
     }
     public String toHtmlString() {
-        return "<li> Код дожности: " + positionId + "; " + "Наименование: " + position + "</li>";
+        return "<li> КОД ДОЛЖНОСТИ [ " + positionId + " ] " + "НАИМЕНОВАНИЕ [ " + position + " ] </li>";
     }
 }
