@@ -7,7 +7,6 @@ package dao.servlets;
 
 import bll_user.ReadUserBeanLocal;
 import dal.Role;
-import static dal.Role.ADMIN;
 import dal.Users;
 import dao.BrutCheck;
 import dao.password.HashCheck;
@@ -17,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -136,23 +134,23 @@ public class Login extends HttpServlet {
 
         } //if (flagBrutTestPassed) end
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at BRUTCHECK it works! </h1>");
-            out.println("<h1>Your answer is correct </h1>");
-            out.println("<h1>Your login is " + sessionLogin + " </h1>");
-            out.println("<h1>Your password is " + sessionPass + " </h1>");
-            out.println("<h1>Can you log in? " + flagHashChecked + " </h1>");
-            out.println("<h1>Your session param is < " + param + " > </h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Login</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet Login at BRUTCHECK it works! </h1>");
+//            out.println("<h1>Your answer is correct </h1>");
+//            out.println("<h1>Your login is " + sessionLogin + " </h1>");
+//            out.println("<h1>Your password is " + sessionPass + " </h1>");
+//            out.println("<h1>Can you log in? " + flagHashChecked + " </h1>");
+//            out.println("<h1>Your session param is < " + param + " > </h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
 
         String s = "Сумма чисел - ошибочный ответ";
         request.setAttribute("answerInputCheck", s);

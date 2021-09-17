@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "AdminServlet", urlPatterns = {"/AdminServlet"})
-public class AdminServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,34 +35,15 @@ public class AdminServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        HttpSession session = request.getSession();
         
-        String test = request.getParameter("test");
-        String test1 = (String)session.getAttribute("userToHtml");
-        
-        if(test != null){
-        
-
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdmServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdmServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Servlet AdmServlet at " + test1 + "</h1>");
-            
-            
-            
-            
-            
-            
-            out.println("</body>");
-            out.println("</html>");
+        String logout = request.getParameter("logout");
+        if(logout != null){
+            HttpSession session = request.getSession();
+            if(!session.isNew()){
+                session.invalidate();
+            }
+            response.sendRedirect("index.jsp");
         }
-        }//end test if
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

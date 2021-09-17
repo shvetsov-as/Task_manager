@@ -12,20 +12,26 @@
         <title> Admin </title>
     </head>
     <body>
-        <h1>Admin menu page</h1>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
         
+        <h3>Admin menu page</h3>
         
-        <form method="GET" action="AdmServlet">
-          <input type="submit" value="test" name="test" />  
+        <br>
+        <br>
+        <form method="GET" action="AdminServlet">
+          <input type="submit" value="Список всех пользователей" name="test" />  
         </form>
+        <br>
+        <br>
+        <p> <a href="admin_menu_create.jsp">Создать нового пользователя</a>      </p>
+        <p> <a href="admin_menu_update.jsp">Редактировать данные пользователей</a>      </p>
         
         
         
         
         
-        
-        
-        
-        <a href="/logout">Logout</a>
+        <form method="GET" action="LogoutServlet">
+          <input type="submit" value="Выйти" name="logout" />  
+        </form>
     </body>
 </html>

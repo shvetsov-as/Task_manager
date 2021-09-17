@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>JSP Page</title> 
     </head>
     <body>
+        
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        
         <form method="POST" action="InputCheck">
             <h5>Login</h5>
             <input type="text" name="login" placeholder="IvanovAN" value="" maxlength="50"/>

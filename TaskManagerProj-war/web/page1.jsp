@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
         <form method="POST" action="Login">
             <input type="text" name="test" onsubmit="" maxlength="50" placeholder=" Сумма: <%
                 String answerRandom1 = (String) request.getAttribute("answerRandom1");
