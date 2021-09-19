@@ -35,11 +35,12 @@ public class PositionsFacade extends AbstractFacade<Positions> implements Positi
     @Override
     public List<Positions> findPosID() {
 
-        List<Positions> positions = new ArrayList<>();
+        //List<Positions> positions = new ArrayList<>();
         Query findPosID = em.createNamedQuery("Positions.findAll");
-        //findPosID.setParameter(Positions.class);
-        positions = findPosID.getResultList();
-        return positions;
+        
+        //positions = findPosID.getResultList();
+        //System.out.println("");
+        return findPosID.getResultList();
     }
 
 }

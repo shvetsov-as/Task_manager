@@ -19,8 +19,11 @@
         <form method="GET" action="AdminCreateServlet">
             <input type="submit" value="AdminCreateServlet" name="test" />
         </form>
-        
-        <p> <a href="admin_menu_positions.jsp">Создать новую должность</a>      </p>
+        <br>
+        <br>
+        <form method="GET" action="AdminServlet">
+            <input type="submit" value="Создать новую должность" name="newPosition" />
+        </form>
         
 
         <%@include file="WEB-INF/jspf/footer.jspf" %>

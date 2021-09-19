@@ -11,7 +11,6 @@ import dal.Users;
 import dao.BrutCheck;
 import dao.password.HashCheck;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,14 +91,13 @@ public class Login extends HttpServlet {
                 if (flagHashChecked) {
 
                     session.setAttribute("userToHtml", user.toHtmlString());
-                    session.setAttribute("userId", user.toHtmlString());
+                    session.setAttribute("userId", user.getUserId());
                     session.setAttribute("userSalt", user.getUserMark());
                     session.setAttribute("userRole", user.getUserRole());
 
                     switch ((Integer) session.getAttribute("userRole")) {
                         case (1):
                             session.setAttribute("role", Role.ADMIN);
-                            
                             request.getRequestDispatcher("admin_menu.jsp").forward(request, response);
                             
                             break;

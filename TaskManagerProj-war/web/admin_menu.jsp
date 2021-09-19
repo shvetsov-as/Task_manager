@@ -19,15 +19,24 @@
         <br>
         <br>
         <form method="GET" action="AdminServlet">
-          <input type="submit" value="Список всех пользователей" name="test" />  
+          <input type="submit" value="Список всех пользователей" name="allUsers" />  
         </form>
         <br>
         <br>
-        <p> <a href="admin_menu_create.jsp">Создать нового пользователя</a>      </p>
-        <p> <a href="admin_menu_update.jsp">Редактировать данные пользователей</a>      </p>
-        
-        
-        
+        <p>Меню работы с учетными записями пользователей:</p>
+        <br>
+        <form method="GET" action="AdminServlet">
+          <input type="submit" value="Создать запись" name="createUser" />  
+        </form>
+        <br>
+        <br>
+        <form method="GET" action="AdminServlet">
+          <input type="submit" value="Редактировать запись" name="updateUser" />  
+        </form>
+        <br>
+        <br>
+
+        <br>
         
         
         <form method="GET" action="LogoutServlet">

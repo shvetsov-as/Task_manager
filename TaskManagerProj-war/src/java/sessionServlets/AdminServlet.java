@@ -5,6 +5,7 @@
  */
 package sessionServlets;
 
+import dal.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,35 +35,57 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        HttpSession session = request.getSession();
-        
-        String test = request.getParameter("test");
-        String test1 = (String)session.getAttribute("userToHtml");
-        
-        if(test != null){
-        
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdmServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdmServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Servlet AdmServlet at " + test1 + "</h1>");
+        HttpSession session = request.getSession();
+
+        String test1 = (String) session.getAttribute("userToHtml");
+
+        //from admin.jsp menu buttons
+        String allUsers = request.getParameter("allUsers");
+        String createUser = request.getParameter("createUser");
+        String updateUser = request.getParameter("updateUser");
+        String newPosition = request.getParameter("newPosition");
+
+        if (session.isNew() || !((Role) session.getAttribute("role")).equals(Role.ADMIN)) {
+            String s = "Время Вашей сессии истекло";// internal error?
+            session.invalidate();
+            request.setAttribute("answerInputCheck", s);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {   
+
+            if (createUser != null) {
+                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
+
+            }
+
+            if (updateUser != null) {
+                request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+
+            }
             
+            if (newPosition != null) {
+                request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);
+
+            }
             
-            
-            
-            
-            
-            out.println("</body>");
-            out.println("</html>");
+            if ("allUsers" != null) {
+                try (PrintWriter out = response.getWriter()) {
+                    /* TODO output your page here. You may use following sample code. */
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet AdmServlet</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h1>Servlet AdmServlet at " + request.getContextPath() + "</h1>");
+                    out.println("<h1>Servlet AdmServlet at " + test1 + "</h1>");
+                    out.println("</body>");
+                    out.println("</html>");
+                }
+            }
+
         }
-        }//end test if
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
