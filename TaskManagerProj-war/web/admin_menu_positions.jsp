@@ -5,9 +5,9 @@
 --%>
 
 <%@page import="dal.Positions"%>
-<%@page import="dal.Users"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,6 @@
         <br>
 
 
-
         <form method="GET" action="AdminPositionServlet">
             <table border="1" width="300" height="50" cellspacing="1" cellpadding="1">
                 <thead align="center">
@@ -57,7 +56,9 @@
 
                             
 
-                                <jsp:useBean id="PositionsFacade" class="dalSessionBean.PositionsFacade" />
+                       <%-- <jsp:useBean id="PositionsFacade" class="dalSessionBean.PositionsFacade" scope="application"/>
+                         
+                        
                                 <option>---</option>
 
                                 <%
@@ -70,13 +71,9 @@
                                 <option><%=optionID%></option>
                                 <%
                                     }
-                                %>
+                                %>--%>
 
 
-                            
-
-
-                        
                     </tr>
                     <tr>
                         <td align="center" width="150">
