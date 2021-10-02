@@ -5,6 +5,7 @@
  */
 package bll_user;
 
+import dal.Positions;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface UpdateUserBeanLocal {
+    boolean updatePosition(Integer positionID, String positionName);
     
 }

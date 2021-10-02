@@ -56,7 +56,7 @@ public class InputCheck extends HttpServlet {
             rand2 = random.nextInt(10);
             randomResult = rand1 + rand2;
 
-            BrutCheck.setRandomResult(randomResult);
+            BrutCheck.setRandomResult(randomResult);//sending random res to brutCheck module for comparing
 
             request.setAttribute("answerRandom1", rand1.toString());
             request.setAttribute("answerRandom2", rand2.toString());

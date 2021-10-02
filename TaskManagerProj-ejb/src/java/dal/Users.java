@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole")
     , @NamedQuery(name = "Users.findByUserLogin", query = "SELECT u FROM Users u WHERE u.userLogin = :userLogin")
     , @NamedQuery(name = "Users.findByUserPasswd", query = "SELECT u FROM Users u WHERE u.userPasswd = :userPasswd")
+    , @NamedQuery(name = "Users.joinUserEmployee", query = "SELECT u FROM Users u WHERE u.userId = u.employee.empId") /////////////   
     , @NamedQuery(name = "Users.findByUserMark", query = "SELECT u FROM Users u WHERE u.userMark = :userMark")})
 public class Users implements Serializable {
 
@@ -64,8 +66,15 @@ public class Users implements Serializable {
     @Size(min = 1, max = 250)
     @Column(name = "user_mark")
     private String userMark;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
-    private Collection<Employee> employeeCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
+//    private Collection<Employee> employeeCollection;
+    
+    
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
+    private Employee employee;
+    
+    
 
     public Users() {
     }
@@ -122,14 +131,29 @@ public class Users implements Serializable {
         this.userMark = userMark;
     }
 
-    @XmlTransient
-    public Collection<Employee> getEmployeeCollection() {
-        return employeeCollection;
+//    @XmlTransient
+//    public Collection<Employee> getEmployeeCollection() {
+//        return employeeCollection;
+//    }
+//
+//    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+//        this.employeeCollection = employeeCollection;
+//    }
+////////////////////////////////////////////////////////////////////////////////////
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
-        this.employeeCollection = employeeCollection;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
+    
+    
+    
+    
+    
+    
+    
 
     @Override
     public int hashCode() {
@@ -155,7 +179,39 @@ public class Users implements Serializable {
     public String toString() {
         return "dal.Users[ userId=" + userId + " ]";
     }
+//    public String toHtmlString() {
+//        return "<li> dal.Users[ userId " + userId + " Login " + userLogin + " userMark " + userMark + " userRole " + userRole + " ] </li>";
+//    }
     public String toHtmlString() {
-        return "<li> dal.Users[ userId " + userId + " Login " + userLogin + " userMark " + userMark + " userRole " + userRole + " ] </li>";
+        return "<td align=\"center\">" + userId + "</td> "
+                + "<td align=\"center\">" + userLogin + "</td> "
+                + "<td align=\"center\">" + userMark + "</td> "
+                + "<td align=\"center\">" + userRole + " </td>";
+    }
+
+    public String toHtmlStringTABLE() {////////////////////////////////////////////
+        return "<tr> <td align=\"center\">" + userId + "</td> "
+                + "<td align=\"center\">" + userLogin + "</td> "
+                + "<td align=\"center\">" + userRoleToString(userRole) + "</td> "
+                + "<td align=\"center\">" + employee.getEmpSurname() + "</td> "
+                + "<td align=\"center\">" + employee.getEmpName() + "</td> "
+                + "<td align=\"center\">" + employee.getEmpMidName() + "</td> ";
+    }
+    
+    private String userRoleToString(Integer userRole){
+        switch (userRole){
+            case(1):
+            return Role.ADMIN.name();
+            case(2):
+            return Role.MANAGER.name();
+            case(3):
+            return Role.USER.name();
+            case(4):
+            return Role.UNKNOWN.name();
+        }
+        
+        
+        
+        return null;
     }
 }

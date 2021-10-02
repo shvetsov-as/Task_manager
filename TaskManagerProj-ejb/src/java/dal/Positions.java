@@ -114,4 +114,13 @@ public class Positions implements Serializable {
     public String toHtmlString() {
         return "<li> КОД ДОЛЖНОСТИ [ " + positionId + " ] " + "НАИМЕНОВАНИЕ [ " + position + " ] </li>";
     }
+    
+    public String toHtmlStringTABLE() {////////////////////////////////////////////
+        return "<tr> <td align=\"center\">" + positionId + "</td> "
+                + "<td align=\"center\">" + position + "</td> </tr>";
+    }
+    
+    public String toHtmlStringBUTTON() {////////////////////////////////////////////
+        return "<option>" + positionId + "</option>";
+    }
 }
