@@ -5,8 +5,10 @@
  */
 package bll_user;
 
+import dal.Positions;
 import dal.Role;
 import dal.Users;
+import dalSessionBean.PositionsFacadeLocal;
 import dalSessionBean.UsersFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,9 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class ReadUserBean implements ReadUserBeanLocal {
+
+    @EJB
+    private PositionsFacadeLocal positionsFacade;
 
     @EJB
     private UsersFacadeLocal usersFacade;
@@ -69,6 +74,19 @@ public class ReadUserBean implements ReadUserBeanLocal {
     @Override
     public List<Users> findByRegex(String regex) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Users> joinUserEmployee() {
+        
+        return usersFacade.joinUserEmployee();
+    }
+
+    @Override
+    public List<Positions> allPositions() {
+        List<Positions> posList = new ArrayList<>();
+        posList = positionsFacade.findAll();
+        return posList;
     }
 
     

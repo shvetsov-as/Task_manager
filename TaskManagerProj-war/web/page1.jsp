@@ -13,17 +13,38 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <form method="POST" action="Login">
-            <input type="text" name="test" onsubmit="" maxlength="50" placeholder=" Сумма: <%
-                String answerRandom1 = (String) request.getAttribute("answerRandom1");
-                String answerRandom2 = (String) request.getAttribute("answerRandom2");
-            if (answerRandom1 != null && answerRandom2 != null) {
-        %>
 
-<%=answerRandom1 + " и " + answerRandom2%>
+        <table border="1" width="500" cellspacing="1" cellpadding="1">
 
-        <% }%>" />
-            <input type="submit" value="check" name="check" />
-        </form>
+            <tbody>
+
+                <tr>
+
+                    <td>
+                        <p>Я не робот!</p>
+                    </td>
+
+                    <td>
+                        <form method="POST" action="Login">
+                            <input type="text" name="test" onsubmit="" maxlength="50" placeholder=" Сумма: <%
+                                String answerRandom1 = (String) request.getAttribute("answerRandom1");
+                                String answerRandom2 = (String) request.getAttribute("answerRandom2");
+                                if (answerRandom1 != null && answerRandom2 != null) {
+                                   %>
+<%=answerRandom1 + " и " + answerRandom2 + " = ? "%>
+                                   <% }%>" /> 
+                    </td>
+
+                    <td>
+                        <input type="submit" value="Ответить" name="check" />
+                        </form> 
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
     </body>
 </html>

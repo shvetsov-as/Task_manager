@@ -4,6 +4,8 @@
     Author     : User
 --%>
 
+<%@page import="dal.Users"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,10 +19,60 @@
         <h3>Admin menu page</h3>
         
         <br>
+        <!Users list on page>
+            
+            <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ЛОГИН</th>
+                <th>РОЛЬ</th>
+                <th>ФАМИЛИЯ</th>
+                <th>ИМЯ</th>
+                <th>ОТЧЕСТВО</th>
+                <th>ДОЛЖНОСТЬ</th>
+            </tr>
+        </thead>
+        
+        <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
+        
+                
+           <%--<%List<Users> listReadUser = bufBean.findAllusers();
+           String ulist;
+           for (Users us : listReadUser) {
+                    ulist = us.toHtmlString();
+           %>
+              <%=ulist%>
+        <%}%> Show only users without Employee join--%>  
+        
+        
+         <%List<Users> listReadUser = bufBean.joinUserEmployee();
+           String users;
+           for (Users us : listReadUser) {
+               
+                    users = us.toHtmlStringTABLE();
+           %>
+              <%=users%>
+        <%}%>  
+        </table>    
+
+        <%--<%
+            List<Users> readUserAnswer = (List<Users>) request.getAttribute("readUserAnswer");
+            if (readUserAnswer != null) {
+              String res = null;
+                for (Users u : readUserAnswer) {
+                    res = u.toHtmlString();%>
+        <%=res%>
+        <%}%>     
+        <%}%> Show all users response --%>
+
         <br>
-        <form method="GET" action="AdminServlet">
+
+        <%--<form method="GET" action="AdminServlet">
           <input type="submit" value="Список всех пользователей" name="allUsers" />  
-        </form>
+        </form>  Show all users button --%>  
+        
+        
         <br>
         <br>
         <p>Меню работы с учетными записями пользователей:</p>

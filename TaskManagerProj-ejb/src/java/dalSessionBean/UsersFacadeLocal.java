@@ -32,4 +32,6 @@ public interface UsersFacadeLocal {
 
     int count();
     
+    List<Users> joinUserEmployee();////
+    
 }

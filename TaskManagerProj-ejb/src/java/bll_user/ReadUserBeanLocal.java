@@ -5,6 +5,7 @@
  */
 package bll_user;
 
+import dal.Positions;
 import dal.Users;
 import java.util.List;
 import javax.ejb.Local;
@@ -21,6 +22,10 @@ public interface ReadUserBeanLocal {
     Users findByUserLogin(String login);
     
     List<Users> findByRegex(String regex);
+    
+    List <Users> joinUserEmployee ();///////////////////
+    
+    List <Positions> allPositions();
     
     //check user by login
     //boolean userLoginMatches (String login);

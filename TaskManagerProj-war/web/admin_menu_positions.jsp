@@ -20,7 +20,7 @@
         <h3>Admin menu positions</h3>
 
 
-        <form method="GET" action="AdminPositionServlet">
+        <%--<form method="GET" action="AdminPositionServlet">
             <input type="submit" value="Все должности" name="allPositions" />
         </form>
         <br>
@@ -32,7 +32,38 @@
                     res = p.toHtmlString();%>
         <%=res%>
         <%}%>
-        <%}%>
+        <%}%>--%>
+
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>КОД  ДОЛЖНОСТИ</th>
+                    <th>НАИМЕНОВАНИЕ  ДОЛЖНОСТИ</th>  
+                </tr>
+            </thead>
+
+            <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
+
+
+            <%--<%List<Users> listReadUser = bufBean.findAllusers();
+            String ulist;
+            for (Users us : listReadUser) {
+                     ulist = us.toHtmlString();
+            %>
+               <%=ulist%>
+         <%}%> Show only users without Employee join--%>  
+
+
+            <%List<Positions> listPosition = bufBean.allPositions();
+                String positionTable;
+                for (Positions pos : listPosition) {
+                    positionTable = pos.toHtmlStringTABLE();
+            %>
+            <%=positionTable%>
+            <%}%>  
+        </table>
+
         <br>
 
 
@@ -50,29 +81,20 @@
                     </tr>
                     <tr>
                         <td align="center" width="150">
-                            <input type="text" name="posName" value="" placeholder="Начальник центра" minlength="1" maxlength="250"/>
+                            <input type="text" name="posName" value="" placeholder="Начальник центра" maxlength="250"/>
                         </td>
-                        
 
-                            
-
-                       <%-- <jsp:useBean id="PositionsFacade" class="dalSessionBean.PositionsFacade" scope="application"/>
-                         
-                        
-                                <option>---</option>
-
-                                <%
-                                    List<Positions> posID = PositionsFacade.findPosID();
-
-                                    String optionID = "";
-                                    for (Positions p : posID) {
-                                        optionID = p.getPositionId().toString();
-                                %>    
-                                <option><%=optionID%></option>
-                                <%
-                                    }
-                                %>--%>
-
+                        <td align="center" width="150">
+                            <select size="1" name="positionDrop">
+                                <option>Новая должность</option>
+                                <% String positionOption;
+                                    for (Positions pos : listPosition) {
+                                        positionOption = pos.toHtmlStringBUTTON();
+                                %>
+                                <%=positionOption%>
+                                <%}%>
+                            </select>
+                        </td>
 
                     </tr>
                     <tr>
@@ -83,9 +105,25 @@
                             <input type="submit" value="Создать/Изменить" name="posCreateUpdate" />
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td align="center" width="150">
+                            <input type="submit" value="Удалить" name="posDelete" />
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </form>
+
+        <%
+            String answerPosServ = (String) request.getAttribute("answerPosServ");
+
+            if (answerPosServ != null) {
+        %>
+        <%=answerPosServ%>
+        <%}%>
 
 
 

@@ -40,4 +40,13 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
         users = findByUserLogin.getResultList();
         return users;
     }
+
+    @Override
+    public List<Users> joinUserEmployee() {
+        List <Users> listEmployee = new ArrayList<>();
+        Query joinUserEmployee = em.createNamedQuery("Users.joinUserEmployee");
+        
+        listEmployee = joinUserEmployee.getResultList();
+        return listEmployee;
+    }
 }
