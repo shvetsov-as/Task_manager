@@ -7,6 +7,7 @@ package bll_user;
 
 import dal.Positions;
 import dal.Users;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -26,6 +27,8 @@ public interface ReadUserBeanLocal {
     List <Users> joinUserEmployee ();///////////////////
     
     List <Positions> allPositions();
+    
+    List<Collection> joinUserThreeTab();////////////
     
     //check user by login
     //boolean userLoginMatches (String login);

@@ -53,4 +53,11 @@ public final class PasswdCheck {
         }
         return false;
     }
+    
+    public static boolean passwdMatch(String password1, String password2) {
+        if (password1.equals(password2)) {
+            return true;
+        }
+        return false;
+    }
 }

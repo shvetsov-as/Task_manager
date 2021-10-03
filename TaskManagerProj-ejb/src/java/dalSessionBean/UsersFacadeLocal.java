@@ -6,6 +6,7 @@
 package dalSessionBean;
 
 import dal.Users;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -33,5 +34,7 @@ public interface UsersFacadeLocal {
     int count();
     
     List<Users> joinUserEmployee();////
+    
+    List<Collection> joinUserThreeTab();//
     
 }

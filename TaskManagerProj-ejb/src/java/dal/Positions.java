@@ -123,4 +123,8 @@ public class Positions implements Serializable {
     public String toHtmlStringBUTTON() {////////////////////////////////////////////
         return "<option>" + positionId + "</option>";
     }
+    
+    public String toHtmlStringBUTTONname() {////////////////////////////////////////////
+        return "<option>" + position + "</option>";
+    }
 }

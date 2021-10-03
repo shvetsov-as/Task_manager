@@ -12,6 +12,9 @@ import bll_user.UpdateUserBeanLocal;
 import dal.Positions;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -135,6 +138,18 @@ public class AdminPositionServlet extends HttpServlet {
                     request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);
                 }
             } else {
+
+                List<Collection> joinUser3 = readUserBean.joinUserThreeTab();
+                
+                
+                
+                Iterator<Collection> it;
+                it = joinUser3.iterator();
+                while (it.hasNext()) {
+                    System.out.println(it.next());
+                    
+                }
+
                 String s = "Код должности не указан. Удаление не выполнено.";
                 request.setAttribute("answerPosServ", s);
                 request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);

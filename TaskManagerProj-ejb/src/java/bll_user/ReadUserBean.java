@@ -11,6 +11,7 @@ import dal.Users;
 import dalSessionBean.PositionsFacadeLocal;
 import dalSessionBean.UsersFacadeLocal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -87,6 +88,11 @@ public class ReadUserBean implements ReadUserBeanLocal {
         List<Positions> posList = new ArrayList<>();
         posList = positionsFacade.findAll();
         return posList;
+    }
+    
+    @Override
+    public List<Collection> joinUserThreeTab() {///
+        return usersFacade.joinUserThreeTab();
     }
 
     

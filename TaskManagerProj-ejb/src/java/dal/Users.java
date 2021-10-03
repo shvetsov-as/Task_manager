@@ -201,13 +201,13 @@ public class Users implements Serializable {
     private String userRoleToString(Integer userRole){
         switch (userRole){
             case(1):
-            return Role.ADMIN.name();
+            return Role.ADMIN.getRusName();
             case(2):
-            return Role.MANAGER.name();
+            return Role.MANAGER.getRusName();
             case(3):
-            return Role.USER.name();
+            return Role.USER.getRusName();
             case(4):
-            return Role.UNKNOWN.name();
+            return Role.UNKNOWN.getRusName();
         }
         
         
