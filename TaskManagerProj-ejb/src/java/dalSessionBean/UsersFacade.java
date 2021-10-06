@@ -7,13 +7,11 @@ package dalSessionBean;
 
 import dal.Users;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -35,30 +33,20 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
     }
 
     @Override
-    public List<Users> findByUserLogin(String login) {
-        List<Users> users = new ArrayList<>();
+    public List<Users> findByUserLogin(String login) {//to find only one user with uniqe login or duplicate check
+        List<Users> users;
         Query findByUserLogin = em.createNamedQuery("Users.findByUserLogin");
         findByUserLogin.setParameter("userLogin", login);
         users = findByUserLogin.getResultList();
         return users;
     }
 
-    @Override
-    public List<Users> joinUserEmployee() {
-        List<Users> listEmployee = new ArrayList<>();
-        Query joinUserEmployee = em.createNamedQuery("Users.joinUserEmployee");
-
-        listEmployee = joinUserEmployee.getResultList();
-        return listEmployee;
-    }
-
-    @Override
-    public List<Collection> joinUserThreeTab() {
-        TypedQuery<Collection> query = em.createQuery(
-                "SELECT u.userId, u.userLogin, u.userRole, e.empMidName, e.empName, e.empSurname, p.position FROM Users u, Positions p, Employee e",
-                Collection.class);
-        
-        List<Collection> resultlist = query.getResultList();
-        return resultlist;
-    }
+//    @Override
+//    public List<Users> joinUserEmployee() {
+//        List<Users> listEmployee = new ArrayList<>();
+//        Query joinUserEmployee = em.createNamedQuery("Users.joinUserEmployee");
+//
+//        listEmployee = joinUserEmployee.getResultList();
+//        return listEmployee;
+//    } 
 }

@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="dal.UserJoinThree"%>
 <%@page import="dal.Positions"%>
 <%@page import="dal.Users"%>
 <%@page import="dal.Role"%>
@@ -11,11 +12,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Admin </title>
     </head>
     <body>
+        <%%>
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <h3>Admin menu create user</h3>
 
@@ -34,14 +37,50 @@
 
             <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
 
-            <%List<Users> listReadUser = bufBean.joinUserEmployee();
-                String users;
-                for (Users us : listReadUser) {
+            <%
+//            response.setHeader("Cache-Control", "no-cache");
+//            response.setHeader("Pragma", "no-cache");
+//            response.setDateHeader("Expires", 0);
+            //response.setIntHeader("Refresh", 2);
+            
+                List<UserJoinThree> listReadUser = bufBean.userJoinThree();
+            String users;
+            for (UserJoinThree us : listReadUser) {
 
-                    users = us.toHtmlStringTABLE();
-            %>
-            <%=users%>
-            <%}%>  
+                users = us.toHtmlStringTABLE();
+        %>
+        <%=users%>
+        <%}%>    
+        </table>
+        <br>
+        <br>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>userId</th>
+                    <th>userLogin</th>
+                    <th>userRole</th>
+                    <th>userPasswd</th>
+                    <th>userMark</th>
+                    <th>empId</th>
+                    <th>userIdUsers</th>
+                    <th>empSurname</th>
+                    <th>empName</th>
+                    <th>empMidName</th>
+                    <th>posIdPosition</th>
+                    <th>positionId</th>
+                    <th>position</th>
+                </tr>
+            </thead>
+
+            <%
+            for (UserJoinThree us : listReadUser) {
+
+                users = us.toHtmlStringTABLEtest();
+        %>
+        <%=users%>
+        <%}%>    
         </table>
         <br>
         <br>
@@ -126,24 +165,24 @@
                     </tr>
                     
                     <tr>
-                        <td>  
+                        <td> 
+                            
                         </td>
                         <td>
                             <input type="submit" value="Создать" name="create" />
                         </td>
                         <td>
-                            <input type="reset" name="" value="Очистить" />
+                            <input type="reset"  value="Очистить" name=""/>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
             <%
-                String answerPosServ = (String) request.getAttribute("answerPosServ");
-
-                if (answerPosServ != null) {
+                String answerCreateServ = (String) request.getAttribute("answerCreateServ");
+                if (answerCreateServ != null) {
             %>
-            <%=answerPosServ%>
+            <%=answerCreateServ%>
             <%}%>
 
         </form>

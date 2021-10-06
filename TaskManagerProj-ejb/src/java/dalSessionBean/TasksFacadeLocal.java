@@ -16,18 +16,18 @@ import javax.ejb.Local;
 @Local
 public interface TasksFacadeLocal {
 
-    void create(Tasks tasks);
+    void create(Tasks tasks);// criteria api
 
-    void edit(Tasks tasks);
+    void edit(Tasks tasks);// criteria api
 
-    void remove(Tasks tasks);
+    void remove(Tasks tasks);// criteria api
 
-    Tasks find(Object id);
+    Tasks find(Object id);// criteria api
 
-    List<Tasks> findAll();
+    List<Tasks> findAll();// criteria api
 
-    List<Tasks> findRange(int[] range);
+    List<Tasks> findRange(int[] range);// criteria api
 
-    int count();
+    int count();// criteria api
     
 }

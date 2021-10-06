@@ -17,24 +17,23 @@ import javax.ejb.Local;
 @Local
 public interface UsersFacadeLocal {
 
-    void create(Users users);
+    void create(Users users);// criteria api
 
-    void edit(Users users);
+    void edit(Users users);// criteria api
 
-    void remove(Users users);
+    void remove(Users users);// criteria api
 
-    Users find(Object id);
+    Users find(Object id);// criteria api
     
-    List<Users> findByUserLogin(String login);
+    List<Users> findByUserLogin(String login);//to find only one user with uniqe login or duplicate check
 
-    List<Users> findAll();
+    List<Users> findAll();// criteria api
 
-    List<Users> findRange(int[] range);
+    List<Users> findRange(int[] range);// criteria api
 
-    int count();
+    int count();// criteria api
     
-    List<Users> joinUserEmployee();////
+    // List<Users> joinUserEmployee();
     
-    List<Collection> joinUserThreeTab();//
     
 }

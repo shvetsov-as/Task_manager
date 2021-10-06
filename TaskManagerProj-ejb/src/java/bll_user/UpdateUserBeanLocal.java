@@ -13,7 +13,7 @@ import javax.ejb.Local;
  * @author User
  */
 @Local
-public interface UpdateUserBeanLocal {
+public interface UpdateUserBeanLocal { // to update poition by id
     boolean updatePosition(Integer positionID, String positionName);
     
 }

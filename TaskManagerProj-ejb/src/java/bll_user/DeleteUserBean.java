@@ -20,7 +20,7 @@ public class DeleteUserBean implements DeleteUserBeanLocal {
     private PositionsFacadeLocal positionsFacade;
 
     @Override
-    public boolean deletePosition(Integer positionID) {
+    public boolean deletePosition(Integer positionID) { // delete position by id
         if (positionsFacade.find(positionID).getPositionId().equals(positionID)) {
             positionsFacade.remove(positionsFacade.find(positionID));
             return true;

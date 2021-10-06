@@ -6,8 +6,8 @@
 package bll_user;
 
 import dal.Positions;
+import dal.UserJoinThree;
 import dal.Users;
-import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -18,18 +18,20 @@ import javax.ejb.Local;
 @Local
 public interface ReadUserBeanLocal {
     
-    List <Users> findAllusers ();
+    List <Users> findAllusers ();// criteria api
     
-    Users findByUserLogin(String login);
+    Users findByUserLogin(String login);//to find only one user with uniqe login or duplicate check
     
-    List<Users> findByRegex(String regex);
+    List<Users> findByRegex(String regex);// not supported
     
-    List <Users> joinUserEmployee ();///////////////////
+//    List <Users> joinUserEmployee ();
     
-    List <Positions> allPositions();
+    List <Positions> allPositions();//to get list of all positions on jsp page
     
-    List<Collection> joinUserThreeTab();////////////
+    List<UserJoinThree> userJoinThree();//to get list of all users with employee and position
     
+    Integer findPosIDbyName(String posName);//to get position id by position name from positions
+
     //check user by login
     //boolean userLoginMatches (String login);
         

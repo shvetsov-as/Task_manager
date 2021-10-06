@@ -7,7 +7,7 @@ package dalSessionBean;
 
 import bll_user.ReadUserBeanLocal;
 import dal.Positions;
-import dal.Users;
+import dal.UserJoinThree;
 import java.beans.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -58,20 +58,27 @@ public class BufBean implements Serializable {
         propertySupport.removePropertyChangeListener(listener);
     }
 
-    public List<Users> findAllusers() {
-        List<Users> userList = new ArrayList<>();
-        userList = readUserBean.findAllusers();
-        return userList;
+//    public List<Users> findAllusers() {
+//        List<Users> listUsers;
+//        listUsers = readUserBean.findAllusers();
+//        return listUsers;
+//    }
+
+//    public List<Users> joinUserEmployee() {
+//        List<Users> listEmp;
+//        listEmp = readUserBean.joinUserEmployee();
+//        return listEmp;
+//    }
+    
+    public List<UserJoinThree> userJoinThree() {//to get list of all users with employee and position
+        List<UserJoinThree> listUsers;
+        
+        listUsers = readUserBean.userJoinThree();
+        return listUsers;
     }
 
-    public List<Users> joinUserEmployee() {
-        List<Users> empList = new ArrayList<>();
-        empList = readUserBean.joinUserEmployee();
-        return empList;
-    }
-
-    public List<Positions> allPositions() {
-        List<Positions> posList = new ArrayList<>();
+    public List<Positions> allPositions() {//to get list of all positions on jsp page
+        List<Positions> posList;
         posList = readUserBean.allPositions();
         return posList;
     }

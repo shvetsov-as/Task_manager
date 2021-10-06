@@ -26,9 +26,9 @@ public final class HashGen {
         hashMapRes.put("salt", salt);
         hashMapRes.put("hash", passwordPassed);
         
-        System.out.println(salt);
-        System.out.println(passwordPassed);
-        System.out.println(hashMapRes);
+//        System.out.println(salt);
+//        System.out.println(passwordPassed);
+//        System.out.println(hashMapRes);
         
         
         return hashMapRes;

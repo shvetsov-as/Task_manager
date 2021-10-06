@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole")
     , @NamedQuery(name = "Users.findByUserLogin", query = "SELECT u FROM Users u WHERE u.userLogin = :userLogin")
     , @NamedQuery(name = "Users.findByUserPasswd", query = "SELECT u FROM Users u WHERE u.userPasswd = :userPasswd")
-    , @NamedQuery(name = "Users.joinUserEmployee", query = "SELECT u FROM Users u WHERE u.userId = u.employee.empId") /////////////   
+    //, @NamedQuery(name = "Users.joinUserEmployee", query = "SELECT u FROM Users u WHERE u.userId = u.employee.empId")  
     , @NamedQuery(name = "Users.findByUserMark", query = "SELECT u FROM Users u WHERE u.userMark = :userMark")})
 public class Users implements Serializable {
 
@@ -66,13 +66,13 @@ public class Users implements Serializable {
     @Size(min = 1, max = 250)
     @Column(name = "user_mark")
     private String userMark;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
-//    private Collection<Employee> employeeCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
+    private Collection<Employee> employeeCollection;
     
     
     
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
-    private Employee employee;
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
+//    private Employee employee;
     
     
 
@@ -131,22 +131,22 @@ public class Users implements Serializable {
         this.userMark = userMark;
     }
 
-//    @XmlTransient
-//    public Collection<Employee> getEmployeeCollection() {
-//        return employeeCollection;
-//    }
-//
-//    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
-//        this.employeeCollection = employeeCollection;
-//    }
-////////////////////////////////////////////////////////////////////////////////////
-    public Employee getEmployee() {
-        return employee;
+    @XmlTransient
+    public Collection<Employee> getEmployeeCollection() {
+        return employeeCollection;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+        this.employeeCollection = employeeCollection;
     }
+////////////////////////////////////////////////////////////////////////////////////
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
     
     
     
@@ -189,29 +189,14 @@ public class Users implements Serializable {
                 + "<td align=\"center\">" + userRole + " </td>";
     }
 
-    public String toHtmlStringTABLE() {////////////////////////////////////////////
-        return "<tr> <td align=\"center\">" + userId + "</td> "
-                + "<td align=\"center\">" + userLogin + "</td> "
-                + "<td align=\"center\">" + userRoleToString(userRole) + "</td> "
-                + "<td align=\"center\">" + employee.getEmpSurname() + "</td> "
-                + "<td align=\"center\">" + employee.getEmpName() + "</td> "
-                + "<td align=\"center\">" + employee.getEmpMidName() + "</td> ";
-    }
+//    public String toHtmlStringTABLE() {////////////////////////////////////////////
+//        return "<tr> <td align=\"center\">" + userId + "</td> "
+//                + "<td align=\"center\">" + userLogin + "</td> "
+//                + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td> "
+//                + "<td align=\"center\">" + employee.getEmpSurname() + "</td> "
+//                + "<td align=\"center\">" + employee.getEmpName() + "</td> "
+//                + "<td align=\"center\">" + employee.getEmpMidName() + "</td> ";
+//    }
     
-    private String userRoleToString(Integer userRole){
-        switch (userRole){
-            case(1):
-            return Role.ADMIN.getRusName();
-            case(2):
-            return Role.MANAGER.getRusName();
-            case(3):
-            return Role.USER.getRusName();
-            case(4):
-            return Role.UNKNOWN.getRusName();
-        }
-        
-        
-        
-        return null;
-    }
+    
 }

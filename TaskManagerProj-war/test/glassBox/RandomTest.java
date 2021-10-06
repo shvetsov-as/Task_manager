@@ -6,9 +6,11 @@
 package glassBox;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,9 @@ import java.util.logging.Logger;
 public class RandomTest {
 
     public static void main(String[] args) {
+        List<String> a = new ArrayList<>();
+        System.out.println(a.size());
+       
 
         System.out.println("--------   hashGen  --------");
         // ====================   hashGen

@@ -22,7 +22,7 @@ public class UpdateUserBean implements UpdateUserBeanLocal {
     private PositionsFacadeLocal positionsFacade;
 
     @Override
-    public boolean updatePosition(Integer positionID, String positionName) {
+    public boolean updatePosition(Integer positionID, String positionName) {// to update poition by id
         Positions position = new Positions();
         position = positionsFacade.find(positionID);
         if (!position.getPositionId().toString().isEmpty()) {
