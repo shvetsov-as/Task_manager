@@ -84,6 +84,8 @@
         </table>
         <br>
         <br>
+        
+        
 
         <form method="POST" action="AdminCreateServlet">
 
@@ -93,29 +95,29 @@
                     <tr>
                         <td>Введите логин</td>
                         <td>
-                            <input type="text" name="login" value="" placeholder="ПетровАС"/>
+                            <input type="text" required name="login" value="" placeholder="ПетровАС"/>
                         </td>
                         <td>Значение логина должно быть уникальным</td>
                     </tr>
                     <tr>
                         <td>Введите пароль</td>
                         <td>
-                            <input type="password" name="passwd1" value="" placeholder="aA345678"/>
+                            <input type="password" required name="passwd1" value="" placeholder="aA345678"/>
                         </td>
                         <td>Пароль содержит 8 символов: строчный, прописной, цифру</td>
                     </tr>
                     <tr>
                         <td>Повторите пароль</td>
                         <td>
-                            <input type="password" name="passwd2" value="" placeholder="aA345678"/>
+                            <input type="password" required name="passwd2" value="" placeholder="aA345678"/>
                         </td>
                         <td>Пароли должны совпадать</td>
                     </tr>
                     <tr>
                         <td>Выберите роль пользователя</td>
                         <td>
-                            <select name="role">
-                                <option>Роль</option>
+                            <select name="role" required>
+                                <option></option>
                                 <option><%=Role.ADMIN.getRusName()%></option>
                                 <option><%=Role.MANAGER.getRusName()%></option>
                                 <option><%=Role.USER.getRusName()%></option>
@@ -126,29 +128,29 @@
                     <tr>
                         <td>Введите фамилию</td>
                         <td>
-                            <input type="text" name="surname" value="" placeholder="Петров"/>
+                            <input type="text" required name="surname" value="" placeholder="Петров"/>
                         </td>
                         <td>Обязательное поле</td>
                     </tr>
                     <tr>
                         <td>Введите имя</td>
                         <td>
-                            <input type="text" name="name" value="" placeholder="Александр"/>
+                            <input type="text" required name="name" value="" placeholder="Александр"/>
                         </td>
                         <td>Обязательное поле</td>
                     </tr>
                     <tr>
                         <td>Введите отчество</td>
                         <td>
-                            <input type="text" name="midname" value="" placeholder="Сергеевич"/>
+                            <input type="text" required name="midname" value="" placeholder="Сергеевич"/>
                         </td>
                         <td>Обязательное поле</td>
                     </tr>
                     <tr>
                         <td>Выберите должность</td>
                         <td>
-                            <select name="position">
-                                <option>Должность</option>
+                            <select name="position" required>
+                                <option></option>
                                 <%List<Positions> listPosition = bufBean.allPositions();
                                     String positionOption;
                                     for (Positions pos : listPosition) {
@@ -184,6 +186,40 @@
             %>
             <%=answerCreateServ%>
             <%}%>
+            
+            
+            <table border="1">
+            <thead>
+                <tr>
+                    <th>userId</th>
+                    <th>userLogin</th>
+                    <th>userRole</th>
+                    <th>userPasswd</th>
+                    <th>userMark</th>
+                    <th>empId</th>
+                    <th>userIdUsers</th>
+                    <th>empSurname</th>
+                    <th>empName</th>
+                    <th>empMidName</th>
+                    <th>posIdPosition</th>
+                    <th>positionId</th>
+                    <th>position</th>
+                </tr>
+            </thead>
+
+            <% 
+                if (answerCreateServ != null) {
+                List<UserJoinThree> listReadtest = bufBean.userJoinThree();
+            String test;
+            for (UserJoinThree us : listReadtest) {
+
+                test = us.toHtmlStringTABLEtest();
+        %>
+        <%=test%>
+        <%}}%>    
+        </table>
+        <br>
+        <br>
 
         </form>
 

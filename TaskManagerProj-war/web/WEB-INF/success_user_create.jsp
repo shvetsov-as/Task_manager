@@ -12,11 +12,11 @@
         <title>Success</title>
     </head>
     <body>
-        <%@include file="WEB-INF/jspf/header.jspf" %>
+        <%@include file="jspf/header.jspf" %>
 
         <table border="1" width="1" cellspacing="1" cellpadding="1">
 
-            <h3>User menu page</h3>
+            <h3>Success create page</h3>
             <br>
             <tbody>
                 <tr>

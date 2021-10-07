@@ -19,8 +19,8 @@ public final class SaltGen {
     private static final int LOWER_CASE_BOUND_MAX = 122;
     private static final int LOWER_CASE_BOUND_MIN = 97;
 
-    private static final Random random = new Random();
-    private static final StringBuilder saltBuilder = new StringBuilder();
+    private static Random random = new Random();
+    private static StringBuilder saltBuilder = new StringBuilder();
 
     private static char ch;
     private static String strSalt;
@@ -37,6 +37,7 @@ public final class SaltGen {
 
         //System.out.println(saltBuilder.toString());
         strSalt = saltBuilder.toString();
+        saltBuilder.delete(0, strSalt.length());
         return strSalt;
     }
 }

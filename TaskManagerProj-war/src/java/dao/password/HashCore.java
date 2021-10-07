@@ -18,7 +18,7 @@ public final class HashCore {
     private static final int SALT_START = 0;//salt first char
     private static final int SALT_LEN = 5;//salt middle char(full salt - ten characters)
 
-    private static final StringBuilder hashBuilder = new StringBuilder();
+    private static StringBuilder hashBuilder = new StringBuilder();
     private static MessageDigest sha2;// = MessageDigest.getInstance("SHA-2");
 
     private static byte[] hashBytes;

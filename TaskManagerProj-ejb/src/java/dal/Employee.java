@@ -163,8 +163,10 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "dal.Employee[ empId=" + empId + " ]";
+        return "Employee{" + "empId=" + empId + ", empSurname=" + empSurname + ", empName=" + empName + ", empMidName=" + empMidName + ", posIdPosition=" + posIdPosition + ", userIdUsers=" + userIdUsers + ", tasksCollection=" + tasksCollection + '}';
     }
+
+    
     
     public String toHtmlString() {
         return "<li> dal.Employee[ empId=" + empId + " ] </li>";

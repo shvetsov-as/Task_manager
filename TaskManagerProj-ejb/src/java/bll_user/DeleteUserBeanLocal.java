@@ -15,5 +15,6 @@ import javax.ejb.Local;
 public interface DeleteUserBeanLocal {
     
     boolean deletePosition(Integer positionID);// delete position by id
+    boolean deleteUser(Integer userID);// delete user by id
     
 }

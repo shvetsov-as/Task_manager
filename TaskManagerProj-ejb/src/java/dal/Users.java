@@ -68,14 +68,9 @@ public class Users implements Serializable {
     private String userMark;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
     private Collection<Employee> employeeCollection;
-    
-    
-    
+
 //    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
 //    private Employee employee;
-    
-    
-
     public Users() {
     }
 
@@ -147,13 +142,6 @@ public class Users implements Serializable {
 //    public void setEmployee(Employee employee) {
 //        this.employee = employee;
 //    }
-    
-    
-    
-    
-    
-    
-    
 
     @Override
     public int hashCode() {
@@ -177,8 +165,9 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "dal.Users[ userId=" + userId + " ]";
+        return "Users{" + "userId=" + userId + ", userRole=" + userRole + ", userLogin=" + userLogin + ", userPasswd=" + userPasswd + ", userMark=" + userMark + ", employeeCollection=" + employeeCollection + '}';
     }
+
 //    public String toHtmlString() {
 //        return "<li> dal.Users[ userId " + userId + " Login " + userLogin + " userMark " + userMark + " userRole " + userRole + " ] </li>";
 //    }
@@ -187,6 +176,10 @@ public class Users implements Serializable {
                 + "<td align=\"center\">" + userLogin + "</td> "
                 + "<td align=\"center\">" + userMark + "</td> "
                 + "<td align=\"center\">" + userRole + " </td>";
+    }
+    
+    public String toHtmlStringBUTTONid() {////////////////////////////////////////////
+        return "<option>" + userId + "</option>";
     }
 
 //    public String toHtmlStringTABLE() {////////////////////////////////////////////
@@ -197,6 +190,4 @@ public class Users implements Serializable {
 //                + "<td align=\"center\">" + employee.getEmpName() + "</td> "
 //                + "<td align=\"center\">" + employee.getEmpMidName() + "</td> ";
 //    }
-    
-    
 }

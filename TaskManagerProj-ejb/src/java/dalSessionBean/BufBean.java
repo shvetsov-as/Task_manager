@@ -8,6 +8,7 @@ package dalSessionBean;
 import bll_user.ReadUserBeanLocal;
 import dal.Positions;
 import dal.UserJoinThree;
+import dal.Users;
 import java.beans.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -58,11 +59,11 @@ public class BufBean implements Serializable {
         propertySupport.removePropertyChangeListener(listener);
     }
 
-//    public List<Users> findAllusers() {
-//        List<Users> listUsers;
-//        listUsers = readUserBean.findAllusers();
-//        return listUsers;
-//    }
+    public List<Users> findAllusers() {//to get list of all users
+        List<Users> listUsers;
+        listUsers = readUserBean.findAllusers();
+        return listUsers;
+    }
 
 //    public List<Users> joinUserEmployee() {
 //        List<Users> listEmp;
@@ -72,7 +73,6 @@ public class BufBean implements Serializable {
     
     public List<UserJoinThree> userJoinThree() {//to get list of all users with employee and position
         List<UserJoinThree> listUsers;
-        
         listUsers = readUserBean.userJoinThree();
         return listUsers;
     }

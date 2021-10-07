@@ -109,8 +109,12 @@ public class Positions implements Serializable {
 
     @Override
     public String toString() {
-        return "dal.Positions[ positionId=" + positionId + " ]";
+        return "Positions{" + "positionId=" + positionId + ", position=" + position + ", employeeCollection=" + employeeCollection + '}';
     }
+
+    
+    
+    
     public String toHtmlString() {
         return "<li> КОД ДОЛЖНОСТИ [ " + positionId + " ] " + "НАИМЕНОВАНИЕ [ " + position + " ] </li>";
     }

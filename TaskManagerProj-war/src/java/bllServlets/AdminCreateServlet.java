@@ -15,10 +15,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -70,57 +68,15 @@ public class AdminCreateServlet extends HttpServlet {
         UserJoinThree user = new UserJoinThree();
         Integer roleCode;
         Integer positionCode;
-        String hash = null;
-
-        String salt = null;
-
+        String hash;
+        String salt;
+        
         if (restart != null) {
             request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
         }
 
         if (create != null) {
 /////////checking input
-            if (login.trim().isEmpty() || login.trim().equals("")) {
-                String s = "Поле ЛОГИН не заполнено";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-
-            if (passwd1.trim().isEmpty() || passwd1.trim().equals("") || passwd2.trim().isEmpty() || passwd2.trim().equals("")) {
-                String s = "Поле ПАРОЛЬ не заполнено";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-
-            if (role.trim().isEmpty() || role.trim().equals("") || role.trim().equals("Роль")) {
-                String s = "РОЛЬ пользователя не выбрана";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-
-            if (surname.trim().isEmpty() || surname.trim().equals("")) {
-                String s = "ФАМИЛИЯ не заполнена";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-
-            if (name.trim().isEmpty() || name.trim().equals("")) {
-                String s = "ИМЯ не заполнено";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-
-            if (midname.trim().isEmpty() || midname.trim().equals("")) {
-                String s = "ОТЧЕСТВО не заполнено";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-
-            if (position.trim().isEmpty() || position.trim().equals("") || position.trim().equals("Должность")) {
-                String s = "ДОЛЖНОСТЬ не выбрана";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
 
             if (!PasswdCheck.passwdMatch(passwd1, passwd2)) {
                 String s = "Данные ПАРОЛЕЙ не совпадают";
@@ -144,6 +100,7 @@ public class AdminCreateServlet extends HttpServlet {
             //Start to build new user
             try {//get new pass and salt
                 saltHash = HashGen.hashGen(passwd1);
+                
             } catch (NoSuchAlgorithmException ex) {
                 String s = "Внутренняя ошибка " + ex.getMessage();
                 request.setAttribute("answerCreateServ", s);
@@ -153,9 +110,7 @@ public class AdminCreateServlet extends HttpServlet {
             roleCode = Role.getRoleCodeByRUname(role);//get role id by name
             positionCode = readUserBean.findPosIDbyName(position);//get position id by name
             hash = saltHash.get("hash");
-            salt = saltHash.get("salt");
-            
-            System.out.println(" hash = saltHash.get(\"hash\");  salt " + hash + " " + salt);
+            salt = saltHash.get("salt");    
 
             user.setUserLogin(login);
             user.setUserPasswd(hash);
@@ -189,12 +144,10 @@ public class AdminCreateServlet extends HttpServlet {
 //        }
             if (createUserBean.createUserJoinThree(user)) {
                 saltHash.clear();
-                System.out.println("if (createUserBean.createUserJoinThree(user)) salt " + saltHash.get("salt") + saltHash.get("hash"));
-
-                request.getRequestDispatcher("success_user_create.jsp").forward(request, response);
+                
+                request.getRequestDispatcher("WEB-INF/success_user_create.jsp").forward(request, response);
             } else {
                 saltHash.clear();
-                System.out.println(" else if (createUserBean.createUserJoinThree(user)) salt " + saltHash.get("salt") + saltHash.get("hash"));
                 String s = "Запись не создана. Попробуйте позже.";
                 request.setAttribute("answerCreateServ", s);
                 request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);

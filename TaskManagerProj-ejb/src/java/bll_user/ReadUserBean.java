@@ -95,7 +95,7 @@ public class ReadUserBean implements ReadUserBeanLocal {
     
     @Override
     public List<UserJoinThree> userJoinThree() {//to get list of all users with employee and position
-        List<UserJoinThree> listUsers;
+        List<UserJoinThree> listUsers;   
         listUsers = userJoinThreeFacade.userJoinThree();
         return listUsers;
     }

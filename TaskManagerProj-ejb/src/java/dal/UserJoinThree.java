@@ -79,7 +79,7 @@ public class UserJoinThree implements Serializable {
     @Size(max = 250)
     @Column(name = "position")
     private String position;
-
+    
     public UserJoinThree() {
     }
     
@@ -99,6 +99,7 @@ public class UserJoinThree implements Serializable {
     public Integer getUserId() {
         return userId;
     }
+    
 
     public void setUserId(Integer userId) {
         this.userId = userId;
@@ -199,6 +200,8 @@ public class UserJoinThree implements Serializable {
     public void setPosition(String position) {
         this.position = position;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -209,7 +212,7 @@ public class UserJoinThree implements Serializable {
                 + empName + ", empMidName=" + empMidName + ", position=" + position + '}';
     }
 
-    public String toHtmlStringTABLE() {////////////////////////////////////////////
+    public String toHtmlStringTABLE() {
         return "<tr> <td align=\"center\">" + userId + "</td> "
                 + "<td align=\"center\">" + userLogin + "</td> "
                 + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td> "
