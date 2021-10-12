@@ -6,7 +6,6 @@
 package dalSessionBean;
 
 import dal.Positions;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,15 +31,20 @@ public class PositionsFacade extends AbstractFacade<Positions> implements Positi
         super(Positions.class);
     }
 
-    @Override
-    public List<Positions> findPosID() {
+//    @Override
+//    public List<Positions> findPosID() {
+//
+//        Query findPosID = em.createNamedQuery("Positions.findAll");
+//        return findPosID.getResultList();
+//    }
 
-        //List<Positions> positions = new ArrayList<>();
-        Query findPosID = em.createNamedQuery("Positions.findAll");
-        
-        //positions = findPosID.getResultList();
-        //System.out.println("");
-        return findPosID.getResultList();
+    @Override
+    public Integer findPosIDbyName(String posName) {//to get position id by position name from positions
+        Positions position;
+        Query findPosIDbyName = em.createNamedQuery("Positions.findByPosition");
+        findPosIDbyName.setParameter("position", posName);
+        position = (Positions) findPosIDbyName.getSingleResult();
+        return position.getPositionId();
     }
 
 }

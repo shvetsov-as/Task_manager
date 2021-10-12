@@ -31,22 +31,22 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
     public UsersFacade() {
         super(Users.class);
     }
-    
+
     @Override
-    public List<Users> findByUserLogin(String login) {
-        List <Users> users = new ArrayList<>();
+    public List<Users> findByUserLogin(String login) {//to find only one user with uniqe login or duplicate check
+        List<Users> users;
         Query findByUserLogin = em.createNamedQuery("Users.findByUserLogin");
         findByUserLogin.setParameter("userLogin", login);
         users = findByUserLogin.getResultList();
         return users;
     }
 
-    @Override
-    public List<Users> joinUserEmployee() {
-        List <Users> listEmployee = new ArrayList<>();
-        Query joinUserEmployee = em.createNamedQuery("Users.joinUserEmployee");
-        
-        listEmployee = joinUserEmployee.getResultList();
-        return listEmployee;
-    }
+//    @Override
+//    public List<Users> joinUserEmployee() {
+//        List<Users> listEmployee = new ArrayList<>();
+//        Query joinUserEmployee = em.createNamedQuery("Users.joinUserEmployee");
+//
+//        listEmployee = joinUserEmployee.getResultList();
+//        return listEmployee;
+//    } 
 }

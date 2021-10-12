@@ -125,18 +125,7 @@
         <%=answerPosServ%>
         <%}%>
 
-
-
-        <%--
-          <jsp:useBean id="ReadUserBean" scope="page" class="bll_user.ReadUserBean"/>
-          
-          
-    <% List<Users> result = new ArrayList<Users>(); 
-          result = ReadUserBean.findAllusers();
-          %>
-        --%>
-
-        <%@include file="WEB-INF/jspf/footer.jspf" %>
+        <%@include file="WEB-INF/jspf/footer_admin.jspf" %>
 
     </body>
 </html>

@@ -6,6 +6,7 @@
 package bll_user;
 
 import dalSessionBean.PositionsFacadeLocal;
+import dalSessionBean.UsersFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -17,10 +18,13 @@ import javax.ejb.Stateless;
 public class DeleteUserBean implements DeleteUserBeanLocal {
 
     @EJB
+    private UsersFacadeLocal usersFacade;
+
+    @EJB
     private PositionsFacadeLocal positionsFacade;
 
     @Override
-    public boolean deletePosition(Integer positionID) {
+    public boolean deletePosition(Integer positionID) { // delete position by id
         if (positionsFacade.find(positionID).getPositionId().equals(positionID)) {
             positionsFacade.remove(positionsFacade.find(positionID));
             return true;
@@ -31,4 +35,14 @@ public class DeleteUserBean implements DeleteUserBeanLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public boolean deleteUser(Integer userID) {// delete user by id
+        if (usersFacade.find(userID).getUserId().equals(userID)) {
+            usersFacade.remove(usersFacade.find(userID));
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

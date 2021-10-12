@@ -135,6 +135,7 @@ public class AdminPositionServlet extends HttpServlet {
                     request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);
                 }
             } else {
+
                 String s = "Код должности не указан. Удаление не выполнено.";
                 request.setAttribute("answerPosServ", s);
                 request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);

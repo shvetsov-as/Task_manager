@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole")
     , @NamedQuery(name = "Users.findByUserLogin", query = "SELECT u FROM Users u WHERE u.userLogin = :userLogin")
     , @NamedQuery(name = "Users.findByUserPasswd", query = "SELECT u FROM Users u WHERE u.userPasswd = :userPasswd")
-    , @NamedQuery(name = "Users.joinUserEmployee", query = "SELECT u FROM Users u WHERE u.userId = u.employee.empId") /////////////   
+    //, @NamedQuery(name = "Users.joinUserEmployee", query = "SELECT u FROM Users u WHERE u.userId = u.employee.empId")  
     , @NamedQuery(name = "Users.findByUserMark", query = "SELECT u FROM Users u WHERE u.userMark = :userMark")})
 public class Users implements Serializable {
 
@@ -66,16 +66,11 @@ public class Users implements Serializable {
     @Size(min = 1, max = 250)
     @Column(name = "user_mark")
     private String userMark;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
-//    private Collection<Employee> employeeCollection;
-    
-    
-    
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
-    private Employee employee;
-    
-    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
+    private Collection<Employee> employeeCollection;
 
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userIdUsers")
+//    private Employee employee;
     public Users() {
     }
 
@@ -131,29 +126,22 @@ public class Users implements Serializable {
         this.userMark = userMark;
     }
 
-//    @XmlTransient
-//    public Collection<Employee> getEmployeeCollection() {
-//        return employeeCollection;
-//    }
-//
-//    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
-//        this.employeeCollection = employeeCollection;
-//    }
-////////////////////////////////////////////////////////////////////////////////////
-    public Employee getEmployee() {
-        return employee;
+    @XmlTransient
+    public Collection<Employee> getEmployeeCollection() {
+        return employeeCollection;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+        this.employeeCollection = employeeCollection;
     }
-    
-    
-    
-    
-    
-    
-    
+////////////////////////////////////////////////////////////////////////////////////
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
 
     @Override
     public int hashCode() {
@@ -177,8 +165,9 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "dal.Users[ userId=" + userId + " ]";
+        return "Users{" + "userId=" + userId + ", userRole=" + userRole + ", userLogin=" + userLogin + ", userPasswd=" + userPasswd + ", userMark=" + userMark + ", employeeCollection=" + employeeCollection + '}';
     }
+
 //    public String toHtmlString() {
 //        return "<li> dal.Users[ userId " + userId + " Login " + userLogin + " userMark " + userMark + " userRole " + userRole + " ] </li>";
 //    }
@@ -188,30 +177,14 @@ public class Users implements Serializable {
                 + "<td align=\"center\">" + userMark + "</td> "
                 + "<td align=\"center\">" + userRole + " </td>";
     }
+    
+    public String toHtmlStringBUTTONid() {////////////////////////////////////////////
+        return "<option>" + userId + "</option>";
+    }
 
     public String toHtmlStringTABLE() {////////////////////////////////////////////
         return "<tr> <td align=\"center\">" + userId + "</td> "
                 + "<td align=\"center\">" + userLogin + "</td> "
-                + "<td align=\"center\">" + userRoleToString(userRole) + "</td> "
-                + "<td align=\"center\">" + employee.getEmpSurname() + "</td> "
-                + "<td align=\"center\">" + employee.getEmpName() + "</td> "
-                + "<td align=\"center\">" + employee.getEmpMidName() + "</td> ";
-    }
-    
-    private String userRoleToString(Integer userRole){
-        switch (userRole){
-            case(1):
-            return Role.ADMIN.name();
-            case(2):
-            return Role.MANAGER.name();
-            case(3):
-            return Role.USER.name();
-            case(4):
-            return Role.UNKNOWN.name();
-        }
-        
-        
-        
-        return null;
+                + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td></tr>";
     }
 }

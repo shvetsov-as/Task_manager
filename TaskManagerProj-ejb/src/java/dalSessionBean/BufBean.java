@@ -5,12 +5,15 @@
  */
 package dalSessionBean;
 
+import bll_data.ReadTaskBeanLocal;
 import bll_user.ReadUserBeanLocal;
+import dal.EmpJoinTask;
+import dal.Employee;
 import dal.Positions;
+import dal.UserJoinThree;
 import dal.Users;
 import java.beans.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +27,8 @@ import javax.naming.NamingException;
  */
 public class BufBean implements Serializable {
 
+    ReadTaskBeanLocal readTaskBean = lookupReadTaskBeanLocal();
+
     ReadUserBeanLocal readUserBean = lookupReadUserBeanLocal();
 
     public static final String PROP_SAMPLE_PROPERTY = "sampleProperty";
@@ -31,10 +36,6 @@ public class BufBean implements Serializable {
     private String sampleProperty;
 
     private PropertyChangeSupport propertySupport;
-
-    
-    
-    
 
     public BufBean() {
         propertySupport = new PropertyChangeSupport(this);
@@ -58,28 +59,63 @@ public class BufBean implements Serializable {
         propertySupport.removePropertyChangeListener(listener);
     }
 
-    public List<Users> findAllusers() {
-        List<Users> userList = new ArrayList<>();
-        userList = readUserBean.findAllusers();
-        return userList;
+    public List<Users> findAllusers() {//to get list of all users
+        List<Users> listUsers;
+        listUsers = readUserBean.findAllusers();
+        return listUsers;
     }
 
-    public List<Users> joinUserEmployee() {
-        List<Users> empList = new ArrayList<>();
-        empList = readUserBean.joinUserEmployee();
-        return empList;
-    }
-
-    public List<Positions> allPositions() {
-        List<Positions> posList = new ArrayList<>();
+    public List<Positions> allPositions() {//to get list of all positions on jsp page
+        List<Positions> posList;
         posList = readUserBean.allPositions();
         return posList;
+    }
+    
+    public String positionNameByID(Integer posID) {//to get position name by its ID on jsp page
+        String posName;
+        posName = readUserBean.positionNameByID(posID);
+        return posName;
+    }
+    
+    public List<Employee> allEmployee() {//to get list of all employees on jsp page
+        List<Employee> empList;
+        empList = readUserBean.allEmployee();
+        return empList;
+    }
+    
+    public List<EmpJoinTask> allIncompTasks() {//to get list of all incompleted tasks on jsp page
+        List<EmpJoinTask> taskList;
+        taskList = readTaskBean.allIncompTasks();
+        return taskList;
+    }
+    
+    
+
+//    public List<Users> joinUserEmployee() {
+//        List<Users> listEmp;
+//        listEmp = readUserBean.joinUserEmployee();
+//        return listEmp;
+//    }
+    public List<UserJoinThree> userJoinThree() {//to get list of all users with employee and position
+        List<UserJoinThree> listUsers;
+        listUsers = readUserBean.userJoinThree();
+        return listUsers;
     }
 
     private ReadUserBeanLocal lookupReadUserBeanLocal() {
         try {
             Context c = new InitialContext();
             return (ReadUserBeanLocal) c.lookup("java:global/TaskManagerProj/TaskManagerProj-ejb/ReadUserBean!bll_user.ReadUserBeanLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private ReadTaskBeanLocal lookupReadTaskBeanLocal() {
+        try {
+            Context c = new InitialContext();
+            return (ReadTaskBeanLocal) c.lookup("java:global/TaskManagerProj/TaskManagerProj-ejb/ReadTaskBean!bll_data.ReadTaskBeanLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

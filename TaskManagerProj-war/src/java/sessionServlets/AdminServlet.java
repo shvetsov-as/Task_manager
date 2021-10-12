@@ -65,7 +65,7 @@ public class AdminServlet extends HttpServlet {
 
             if (allUsers != null) {
 
-                List<Users> listUsers = new ArrayList<>();
+                List<Users> listUsers;
 
                 
                     listUsers = readUserBean.findAllusers();

@@ -5,6 +5,7 @@
  */
 package bll_user;
 
+import dal.UserJoinThree;
 import javax.ejb.Local;
 
 /**
@@ -14,6 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface CreateUserBeanLocal {
     
-    boolean createPosition(String positionName);
+    boolean createPosition(String positionName);// add new position and check add status
+    boolean createUserJoinThree(UserJoinThree user);// add new user, employee, position and check add status
     
 }
