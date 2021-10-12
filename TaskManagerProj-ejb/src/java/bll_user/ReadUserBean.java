@@ -5,10 +5,12 @@
  */
 package bll_user;
 
+import dal.Employee;
 import dal.Positions;
 import dal.Role;
 import dal.UserJoinThree;
 import dal.Users;
+import dalSessionBean.EmployeeFacadeLocal;
 import dalSessionBean.PositionsFacadeLocal;
 import dalSessionBean.UserJoinThreeFacadeLocal;
 import dalSessionBean.UsersFacadeLocal;
@@ -22,6 +24,9 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class ReadUserBean implements ReadUserBeanLocal {
+
+    @EJB
+    private EmployeeFacadeLocal employeeFacade;
     
     @EJB
     private UserJoinThreeFacadeLocal userJoinThreeFacade;
@@ -75,11 +80,6 @@ public class ReadUserBean implements ReadUserBeanLocal {
         return user;
     }
 
-    @Override
-    public List<Users> findByRegex(String regex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 //    @Override
 //    public List<Users> joinUserEmployee() {
 //        
@@ -94,6 +94,12 @@ public class ReadUserBean implements ReadUserBeanLocal {
     }
     
     @Override
+    public List<Employee> allEmployee() { //to get list of all employees on jsp page
+        return employeeFacade.findAll();
+    }
+    
+    
+    @Override
     public List<UserJoinThree> userJoinThree() {//to get list of all users with employee and position
         List<UserJoinThree> listUsers;   
         listUsers = userJoinThreeFacade.userJoinThree();
@@ -104,5 +110,15 @@ public class ReadUserBean implements ReadUserBeanLocal {
     public Integer findPosIDbyName(String posName) {//to get position id by position name from positions
         return positionsFacade.findPosIDbyName(posName);
     }
+
+    @Override
+    public String positionNameByID(Integer posID) {//to get position name by its ID on jsp page
+        String posName;
+        posName = positionsFacade.find(posID).getPosition();
+        return posName;
+    }
+
     
+    
+        
 }

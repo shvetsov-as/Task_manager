@@ -190,13 +190,13 @@
                     
                     <tr>
                         <td> 
-                            <input type="submit" value="Удалить" name="delete" />
-                        </td>
-                        <td>
-                            <input type="submit" value="Обновить" name="update" />
+                            <input type="submit" value="Обновить" name="update" /> 
                         </td>
                         <td>
                             <input type="reset"  value="Очистить" name="reset"/>
+                        </td>
+                        <td>
+                            <input type="submit" value="Удалить" name="delete" />
                         </td>
                     </tr>
                 </tbody>
@@ -215,6 +215,6 @@
         <input type="submit" value="Создать новую должность" name="newPosition" />
     </form>
 
-    <%@include file="WEB-INF/jspf/footer.jspf" %>
+    <%@include file="WEB-INF/jspf/footer_admin.jspf" %>
 </body>
 </html>

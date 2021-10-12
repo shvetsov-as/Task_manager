@@ -124,6 +124,10 @@ public class Positions implements Serializable {
                 + "<td align=\"center\">" + position + "</td> </tr>";
     }
     
+    public String toHtmlStringTABLEnoID() {////////////////////////////////////////////
+        return "<tr> <td align=\"center\">" + position + "</td> </tr>";
+    }
+    
     public String toHtmlStringBUTTON() {////////////////////////////////////////////
         return "<option>" + positionId + "</option>";
     }

@@ -6,6 +6,7 @@
 package bll_user;
 
 import dal.Positions;
+import dal.UserJoinThree;
 import javax.ejb.Local;
 
 /**
@@ -15,5 +16,6 @@ import javax.ejb.Local;
 @Local
 public interface UpdateUserBeanLocal { // to update poition by id
     boolean updatePosition(Integer positionID, String positionName);
+    boolean updateUser(Integer userID, UserJoinThree userNewInfo);
     
 }

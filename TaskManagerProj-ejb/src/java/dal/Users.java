@@ -182,12 +182,9 @@ public class Users implements Serializable {
         return "<option>" + userId + "</option>";
     }
 
-//    public String toHtmlStringTABLE() {////////////////////////////////////////////
-//        return "<tr> <td align=\"center\">" + userId + "</td> "
-//                + "<td align=\"center\">" + userLogin + "</td> "
-//                + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td> "
-//                + "<td align=\"center\">" + employee.getEmpSurname() + "</td> "
-//                + "<td align=\"center\">" + employee.getEmpName() + "</td> "
-//                + "<td align=\"center\">" + employee.getEmpMidName() + "</td> ";
-//    }
+    public String toHtmlStringTABLE() {////////////////////////////////////////////
+        return "<tr> <td align=\"center\">" + userId + "</td> "
+                + "<td align=\"center\">" + userLogin + "</td> "
+                + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td></tr>";
+    }
 }

@@ -10,40 +10,47 @@ package dal;
  * @author User
  */
 public enum Task_type {
-    OBI_SAVZ(1){
+    OBI_SAVZ(1) {
         @Override
         public String getRusName() {
-        return "ОБИ_САВЗ";
+            return "ОБИ_САВЗ";
         }
     },
-    OBI_ZI(2){
+    OBI_ZI(2) {
         @Override
         public String getRusName() {
-        return "ОБИ_ЗИ";
+            return "ОБИ_ЗИ";
         }
     },
-    OBI_TZI(3){
+    OBI_TZI(3) {
         @Override
         public String getRusName() {
-        return "ОБИ_ТЗИ";
+            return "ОБИ_ТЗИ";
         }
     },
-    REGIME(4){
+    REGIME(4) {
         @Override
         public String getRusName() {
-        return "Режим";
+            return "Режим";
         }
     },
-    SO(5){
+    SO(5) {
         @Override
         public String getRusName() {
-        return "СО";
+            return "СО";
         }
     },
-    TSS(6){
+    TSS(6) {
         @Override
         public String getRusName() {
-        return "ТСС";
+            return "ТСС";
+        }
+
+    },
+    UNKNOWN(7) {
+        @Override
+        public String getRusName() {
+            return "Не определено";
         }
     };
 
@@ -64,6 +71,45 @@ public enum Task_type {
 
     public String getRusName() {
         return "Российское сокращение";
+    }
+
+    public static Integer getTaskCodeByRUname(String TaskName) {
+
+        switch (TaskName) {
+            case ("ОБИ_САВЗ"):
+                return Task_type.OBI_SAVZ.getTypeCode();
+            case ("ОБИ_ЗИ"):
+                return Task_type.OBI_ZI.getTypeCode();
+            case ("ОБИ_ТЗИ"):
+                return Task_type.OBI_TZI.getTypeCode();
+            case ("Режим"):
+                return Task_type.REGIME.getTypeCode();
+            case ("СО"):
+                return Task_type.SO.getTypeCode();
+            case ("ТСС"):
+                return Task_type.TSS.getTypeCode();
+            default:
+                return Task_type.UNKNOWN.getTypeCode();
+        }
+    }
+
+    public static String getTaskRUnameByCode(Integer TaskTypeCode) {
+        switch (TaskTypeCode) {
+            case (1):
+                return Task_type.OBI_SAVZ.getRusName();
+            case (2):
+                return Task_type.OBI_ZI.getRusName();
+            case (3):
+                return Task_type.OBI_TZI.getRusName();
+            case (4):
+                return Task_type.REGIME.getRusName();
+            case (5):
+                return Task_type.SO.getRusName();
+            case (6):
+                return Task_type.TSS.getRusName();
+            default:
+                return Task_type.UNKNOWN.getRusName();
+        }
     }
 
 }

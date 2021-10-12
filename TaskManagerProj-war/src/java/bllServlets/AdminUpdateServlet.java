@@ -9,6 +9,7 @@ import bll_user.DeleteUserBeanLocal;
 import bll_user.ReadUserBeanLocal;
 import bll_user.UpdateUserBeanLocal;
 import dal.Role;
+import dal.UserJoinThree;
 import dao.password.HashGen;
 import dao.password.PasswdCheck;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class AdminUpdateServlet extends HttpServlet {
 
         String delete = request.getParameter("delete");//button on form update
         String update = request.getParameter("update");//button on form update
-        String restart = request.getParameter("restart");//button on form success
+        String restart = request.getParameter("restart");//button on form success update
 
         String userId = request.getParameter("userId");
         String login = request.getParameter("login");
@@ -71,54 +72,127 @@ public class AdminUpdateServlet extends HttpServlet {
         String position = request.getParameter("position");
 
         Map<String, String> saltHash = new HashMap<>();
-        //UserJoinThree user = new UserJoinThree();
+        UserJoinThree user = new UserJoinThree();
+        boolean flagAllCheck = true;
+        String hash;
+        String salt;
         Integer roleCode;
         Integer positionCode;
+        Integer intUserID;
 
-        if (update != null) {
+        if (restart != null) {
+            request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+        }
+
+        if (update != null || delete != null) {
+
+            intUserID = Integer.parseInt(userId);
+
+            if (update != null) {
+                //building new user obj by non null param
+                if (!login.trim().isEmpty()) {
+                    if (readUserBean.findByUserLogin(login.trim()).getUserLogin().equals("DUPLICATE")
+                            || readUserBean.findByUserLogin(login.trim()).getUserLogin().equals(login.trim())) {
+                        flagAllCheck = false;
+                        String s = "ЛОГИН не уникален";
+                        request.setAttribute("answerUpdateServ", s);
+                        request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                    } else {
+                        user.setUserLogin(login);
+                    }
+                }//if(!login.trim().isEmpty())
+                //
+                //
+                if (!passwd1.trim().isEmpty() & !passwd2.trim().isEmpty()) {
+                    if (!PasswdCheck.passwdMatch(passwd1, passwd2)) {
+                        flagAllCheck = false;
+                        String s = "Данные ПАРОЛЕЙ не совпадают";
+                        request.setAttribute("answerUpdateServ", s);
+                        request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                    }
+                    if (!PasswdCheck.passwdCheck(passwd2)) {
+                        flagAllCheck = false;
+                        String s = "ПАРОЛЬ не соответствует требованиям. Пароль должен содержать 8 символов, в том числе: строчный, прописной, цифру. Не содержать пробелов.";
+                        request.setAttribute("answerUpdateServ", s);
+                        request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                    }
+
+                    try {//get new pass and salt
+                        saltHash = HashGen.hashGen(passwd1);
+                    } catch (NoSuchAlgorithmException ex) {
+                        String s = "Внутренняя ошибка " + ex.getMessage();
+                        request.setAttribute("answerUpdateServ", s);
+                        request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                    }
+                    hash = saltHash.get("hash");
+                    salt = saltHash.get("salt");
+
+                    user.setUserPasswd(hash);
+                    user.setUserMark(salt);
+
+                    saltHash.clear();
+                }//if(!passwd1.trim().isEmpty()
+                //
+                //
+                if (!role.trim().isEmpty()) {
+                    roleCode = Role.getRoleCodeByRUname(role);//get role id by name
+                    user.setUserRole(roleCode);
+                }//if(!role.trim().isEmpty())
+                //
+                //
+                if (!surname.trim().isEmpty()) {
+                    user.setEmpSurname(surname);
+                }//if(!surname.trim().isEmpty())
+                //
+                //
+                if (!name.trim().isEmpty()) {
+                    user.setEmpName(name);
+                }//if(!name.trim().isEmpty())
+                //
+                //
+                if (!midname.trim().isEmpty()) {
+                    user.setEmpMidName(midname);
+                }//if(!midname.trim().isEmpty())
+                //
+                //
+                if (!position.trim().isEmpty()) {
+                    positionCode = readUserBean.findPosIDbyName(position);//get position id by name
+                    user.setPosIdPosition(positionCode);//FK in emp
+                }//if(!position.trim().isEmpty())
+                //
+                //
+                if (flagAllCheck) {
+                    if (updateUserBean.updateUser(intUserID, user)) {
+                        request.getRequestDispatcher("WEB-INF/success_user_update.jsp").forward(request, response);
+                    } else {
+                        String s = "Ошибка обновления. Повторите запрос позже";
+                        request.setAttribute("answerUpdateServ", s);
+                        request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                    }
+
+                } else {
+                    String s = "Ошибка обновления. Повторите запрос позже";
+                    request.setAttribute("answerUpdateServ", s);
+                    request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                }
+
+            }
 /////////checking input
 
-            if (!PasswdCheck.passwdMatch(passwd1, passwd2)) {
-                String s = "Данные ПАРОЛЕЙ не совпадают";
-                request.setAttribute("answerUpdateServ", s);
-                request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
-            }
-
-            if (!PasswdCheck.passwdCheck(passwd2)) {
-                String s = "ПАРОЛЬ не соответствует требованиям. Пароль должен содержать 8 символов, в том числе: строчный, прописной, цифру. Не содержать пробелов.";
-                request.setAttribute("answerUpdateServ", s);
-                request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
-            }
-
-            if (readUserBean.findByUserLogin(login.trim()).getUserLogin().equals("DUPLICATE") || readUserBean.findByUserLogin(login.trim()).getUserLogin().equals(login.trim())) {
-                String s = "ЛОГИН не уникален";
-                request.setAttribute("answerUpdateServ", s);
-                request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
-            }
             //input check end  
-
             //Start to build new user
-            try {//get new pass and salt
-                saltHash = HashGen.hashGen(passwd1);
-            } catch (NoSuchAlgorithmException ex) {
-                String s = "Внутренняя ошибка " + ex.getMessage();
-                request.setAttribute("answerUpdateServ", s);
-                request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
-            }
+            if (delete != null) {
+                if (deleteUserBean.deleteUser(intUserID)) {
+                    request.getRequestDispatcher("WEB-INF/success_user_update.jsp").forward(request, response);
+                } else {
+                    String s = "Ошибка удаления. Повторите запрос позже";
+                    request.setAttribute("answerUpdateServ", s);
+                    request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
+                }
+            }//if (delete != null)
 
-            roleCode = Role.getRoleCodeByRUname(role);//get role id by name
-            positionCode = readUserBean.findPosIDbyName(position);//get position id by name
-
-            
-            
-            
-            
-            saltHash.clear();
-
-            request.getRequestDispatcher("WEB-INF/success_user_update.jsp").forward(request, response);
-
-        }
-    }
+        }//if (update != null || delete != null)
+    }//processReq
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

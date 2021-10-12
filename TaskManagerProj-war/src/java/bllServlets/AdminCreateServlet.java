@@ -70,7 +70,7 @@ public class AdminCreateServlet extends HttpServlet {
         Integer positionCode;
         String hash;
         String salt;
-        
+
         if (restart != null) {
             request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
         }
@@ -94,34 +94,34 @@ public class AdminCreateServlet extends HttpServlet {
                 String s = "ЛОГИН не уникален";
                 request.setAttribute("answerCreateServ", s);
                 request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
-            //input check end  
+            } else {
 
-            //Start to build new user
-            try {//get new pass and salt
-                saltHash = HashGen.hashGen(passwd1);
-                
-            } catch (NoSuchAlgorithmException ex) {
-                String s = "Внутренняя ошибка " + ex.getMessage();
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-            }
+                //input check end  
+                //Start to build new user
+                try {//get new pass and salt
+                    saltHash = HashGen.hashGen(passwd1);
 
-            roleCode = Role.getRoleCodeByRUname(role);//get role id by name
-            positionCode = readUserBean.findPosIDbyName(position);//get position id by name
-            hash = saltHash.get("hash");
-            salt = saltHash.get("salt");    
+                } catch (NoSuchAlgorithmException ex) {
+                    String s = "Внутренняя ошибка " + ex.getMessage();
+                    request.setAttribute("answerCreateServ", s);
+                    request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
+                }
 
-            user.setUserLogin(login);
-            user.setUserPasswd(hash);
-            user.setUserMark(salt);
-            user.setUserRole(roleCode);
-            user.setEmpSurname(surname);
-            user.setEmpName(name);
-            user.setEmpMidName(midname);
-            user.setPosIdPosition(positionCode);
-            //user builded
-            //UserJoinThree user = new UserJoinThree(login, saltHash.get("hash"), saltHash.get("salt"), roleCode, surname, name, midname, positionCode);
+                roleCode = Role.getRoleCodeByRUname(role);//get role id by name
+                positionCode = readUserBean.findPosIDbyName(position);//get position id by name
+                hash = saltHash.get("hash");
+                salt = saltHash.get("salt");
+
+                user.setUserLogin(login);
+                user.setUserPasswd(hash);
+                user.setUserMark(salt);
+                user.setUserRole(roleCode);
+                user.setEmpSurname(surname);
+                user.setEmpName(name);
+                user.setEmpMidName(midname);
+                user.setPosIdPosition(positionCode);
+                //user builded
+                //UserJoinThree user = new UserJoinThree(login, saltHash.get("hash"), saltHash.get("salt"), roleCode, surname, name, midname, positionCode);
 
 //            try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
@@ -142,15 +142,17 @@ public class AdminCreateServlet extends HttpServlet {
 //            out.println("</body>");
 //            out.println("</html>");
 //        }
-            if (createUserBean.createUserJoinThree(user)) {
-                saltHash.clear();
-                
-                request.getRequestDispatcher("WEB-INF/success_user_create.jsp").forward(request, response);
-            } else {
-                saltHash.clear();
-                String s = "Запись не создана. Попробуйте позже.";
-                request.setAttribute("answerCreateServ", s);
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
+                if (createUserBean.createUserJoinThree(user)) {
+                    saltHash.clear();
+
+                    request.getRequestDispatcher("WEB-INF/success_user_create.jsp").forward(request, response);
+                } else {
+                    saltHash.clear();
+                    String s = "Запись не создана. Попробуйте позже.";
+                    request.setAttribute("answerCreateServ", s);
+                    request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
+                }
+
             }
 
         }//if (create != null)

@@ -166,10 +166,18 @@ public class Employee implements Serializable {
         return "Employee{" + "empId=" + empId + ", empSurname=" + empSurname + ", empName=" + empName + ", empMidName=" + empMidName + ", posIdPosition=" + posIdPosition + ", userIdUsers=" + userIdUsers + ", tasksCollection=" + tasksCollection + '}';
     }
 
-    
-    
     public String toHtmlString() {
         return "<li> dal.Employee[ empId=" + empId + " ] </li>";
     }
+
+    public String toHtmlStringTABLE() {
+        return "<tr> <td align=\"center\">" + empSurname + "</td> "
+                + "<td align=\"center\">" + empName + "</td> "
+                + "<td align=\"center\">" + empMidName + "</td> </tr>";
+    }
     
+    public String toHtmlStringTABLEsrnamNam() {
+        return "<tr> <td align=\"center\">" + empSurname + " " + empName + "</td> </tr>";
+    }
+
 }

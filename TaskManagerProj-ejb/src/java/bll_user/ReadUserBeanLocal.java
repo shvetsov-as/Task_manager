@@ -5,6 +5,7 @@
  */
 package bll_user;
 
+import dal.Employee;
 import dal.Positions;
 import dal.UserJoinThree;
 import dal.Users;
@@ -22,11 +23,14 @@ public interface ReadUserBeanLocal {
     
     Users findByUserLogin(String login);//to find only one user with uniqe login or duplicate check
     
-    List<Users> findByRegex(String regex);// not supported
-    
 //    List <Users> joinUserEmployee ();
     
     List <Positions> allPositions();//to get list of all positions on jsp page
+    
+    public String positionNameByID(Integer posID);//to get position name by its ID on jsp page
+       
+   
+    public List<Employee> allEmployee(); //to get list of all employees on jsp page
     
     List<UserJoinThree> userJoinThree();//to get list of all users with employee and position
     
@@ -37,4 +41,6 @@ public interface ReadUserBeanLocal {
         
     //get users passwd, salt, role by login
     //List<Users> getPassSaltRole (String login);
+
+    
 }

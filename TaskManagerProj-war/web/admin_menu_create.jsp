@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="dal.Employee"%>
 <%@page import="dal.UserJoinThree"%>
 <%@page import="dal.Positions"%>
 <%@page import="dal.Users"%>
@@ -21,6 +22,8 @@
         <%%>
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <h3>Admin menu create user</h3>
+        
+        <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
 
         <table border="1">
             <thead>
@@ -35,7 +38,7 @@
                 </tr>
             </thead>
 
-            <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
+            
 
             <%
 //            response.setHeader("Cache-Control", "no-cache");
@@ -54,6 +57,52 @@
         </table>
         <br>
         <br>
+        
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ЛОГИН</th>
+                    <th>РОЛЬ</th>
+                    <th>ФАМИЛИЯ</th>
+                    <th>ИМЯ</th>
+                    <th>ОТЧЕСТВО</th>
+                    <th>ДОЛЖНОСТЬ</th>
+                </tr>
+            </thead>
+
+            
+
+            <% 
+                List<Users> listReadUsers = bufBean.findAllusers();
+                List<Employee> listReadEmp = bufBean.allEmployee();
+                
+            String user;
+            String employee;
+            String position;
+            for (Users u : listReadUsers) {
+
+                user = u.toHtmlStringTABLE();
+        %>
+        <%=user%>
+        <%}%>
+        <%
+            for (Employee e : listReadEmp) {
+
+                employee = e.toHtmlStringTABLE();
+                position = "<tr>" + bufBean.positionNameByID(e.getPosIdPosition().getPositionId()) + "</tr>";
+                
+        %>
+        <%=employee%>
+        <%=position%>
+        <%}%>
+        
+            
+        </table>
+        <br>
+        <br>
+        
         
         <table border="1">
             <thead>
@@ -230,6 +279,6 @@
         </form>
 
 
-        <%@include file="WEB-INF/jspf/footer.jspf" %>
+        <%@include file="WEB-INF/jspf/footer_admin.jspf" %>
     </body>
 </html>
