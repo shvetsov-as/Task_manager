@@ -228,11 +228,11 @@ public class EmpJoinTask implements Serializable {
         return "<tr> <td align=\"center\">" + taskId + "</td> "
                 + "<td align=\"center\">" + taskName + "</td> "
                 + "<td align=\"center\">" + Task_type.getTaskRUnameByCode(taskType) + "</td> "
-                + "<td align=\"center\">" + taskDateFrom + "</td> "
-                + "<td align=\"center\">" + taskDateTo + "</td> "
+                + "<td align=\"center\">" + Task_date.getDateDDMonthYYYY(taskDateFrom) + "</td> "
+                + "<td align=\"center\">" + Task_date.getDateDDMonthYYYY(taskDateTo) + "</td> "
                 + "<td align=\"center\">" + taskTodo + "</td> "
                 + "<td align=\"center\">" + taskNote + "</td> "
-                + "<td align=\"center\">" + empSurname + " " + empName + "</td> "
+                + "<td align=\"center\">" + empSurname + " " + empName + " " + empMidName + "</td> "
                 + "<td align=\"center\">" + Task_status.getStatusNameByCode(taskIsCompl) + "</td> </tr>";
     }
     

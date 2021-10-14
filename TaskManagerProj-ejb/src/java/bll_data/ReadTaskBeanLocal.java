@@ -15,7 +15,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface ReadTaskBeanLocal {
-    
+    List<EmpJoinTask> allTasks();//to get list of all tasks
     List<EmpJoinTask> allIncompTasks();//to get list of all incompleted tasks
     List<EmpJoinTask> allCompTasks();//to get list of all completed tasks
     

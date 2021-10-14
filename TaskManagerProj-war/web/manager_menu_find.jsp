@@ -17,10 +17,10 @@
 
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h3>Manager menu page</h3>
+        <h3>Manager find page</h3>
 
         <br>
-        <h4>СПИСОК АКТИВНЫХ ЗАДАЧ</h4>
+        
         <br>
         <table border="1">
             <thead>
@@ -50,31 +50,12 @@
         </table>    
         <br>
         <br>
+        <p>Меню поиска по задачам:</p>
         <br>
-        <p>Меню работы с задачами:</p>
-        <br>
-        <form method="GET" action="ManagerServlet">
-            <input type="submit" value="Найти запись" name="findTask" />  
-        </form>
-        <br>
-        <br>
-        <form method="GET" action="ManagerServlet">
-            <input type="submit" value="Создать запись" name="createTask" />  
-        </form>
-        <br>
-        <br>
-        <form method="GET" action="ManagerServlet">
-            <input type="submit" value="Редактировать запись" name="updateTask" />  
-        </form>
-        <br>
-        <br>
-
-        <br>
+        
 
 
-        <form method="GET" action="LogoutServlet">
-            <input type="submit" value="Выйти" name="logout" />  
-        </form>
+        <%@include file="WEB-INF/jspf/footer_manager.jspf" %>
 
 
 

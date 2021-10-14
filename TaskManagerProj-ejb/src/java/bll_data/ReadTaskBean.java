@@ -27,8 +27,8 @@ public class ReadTaskBean implements ReadTaskBeanLocal {
         List<EmpJoinTask> taskList;
         List<EmpJoinTask> taskListRes = new ArrayList<>();
         taskList = empJoinTaskFacade.findAll();
-        for(EmpJoinTask e : taskList){
-            if(!e.getTaskIsCompl()){
+        for (EmpJoinTask e : taskList) {
+            if (!e.getTaskIsCompl()) {
                 taskListRes.add(e);
             }
         }
@@ -40,8 +40,8 @@ public class ReadTaskBean implements ReadTaskBeanLocal {
         List<EmpJoinTask> taskList;
         List<EmpJoinTask> taskListRes = new ArrayList<>();
         taskList = empJoinTaskFacade.findAll();
-        for(EmpJoinTask e : taskList){
-            if(e.getTaskIsCompl()){
+        for (EmpJoinTask e : taskList) {
+            if (e.getTaskIsCompl()) {
                 taskListRes.add(e);
             }
         }
@@ -50,4 +50,9 @@ public class ReadTaskBean implements ReadTaskBeanLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    @Override
+    public List<EmpJoinTask> allTasks() {//to get list of all  tasks
+
+        return empJoinTaskFacade.findAll();
+    }
 }

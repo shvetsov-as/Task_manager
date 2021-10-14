@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sessionServlets;
+package bllServlets;
 
-import dal.Role;
 import java.io.IOException;
-//import java.io.PrintWriter;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "AdminServlet", urlPatterns = {"/AdminServlet"})
-public class AdminServlet extends HttpServlet {
+@WebServlet(name = "ManagerUpdateServlet", urlPatterns = {"/ManagerUpdateServlet"})
+public class ManagerUpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,39 +32,18 @@ public class AdminServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-
-        HttpSession session = request.getSession();
-
-        //from admin.jsp menu buttons
-        String createUser = request.getParameter("createUser");
-        String updateUser = request.getParameter("updateUser");
-        String newPosition = request.getParameter("newPosition");
-
-        if (session.isNew() || !((Role) session.getAttribute("role")).equals(Role.ADMIN)) {
-            String s = "Время Вашей сессии истекло";// internal error? null pointer exc !((Role) session.getAttribute("role")).equals(Role.ADMIN); session.isNew() didnt work
-            session.invalidate();
-            request.setAttribute("answerInputCheck", s);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-
-            if (createUser != null) {
-                request.getRequestDispatcher("admin_menu_create.jsp").forward(request, response);
-
-            }
-
-            if (updateUser != null) {
-                request.getRequestDispatcher("admin_menu_update.jsp").forward(request, response);
-
-            }
-
-            if (newPosition != null) {
-                request.getRequestDispatcher("admin_menu_positions.jsp").forward(request, response);
-
-            }
-
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ManagerUpdateServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ManagerUpdateServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

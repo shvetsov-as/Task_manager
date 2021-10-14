@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="dal.Employee"%>
 <%@page import="dal.Users"%>
 <%@page import="dal.Positions"%>
 <%@page import="java.util.List"%>
@@ -23,6 +24,8 @@
         <br>
         <br>
 
+        <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
+
         <table border="1">
             <thead>
                 <tr>
@@ -35,8 +38,6 @@
                     <th>ДОЛЖНОСТЬ</th>
                 </tr>
             </thead>
-
-            <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
 
             <%
 //            response.setHeader("Cache-Control", "no-cache");
@@ -53,41 +54,9 @@
             <%=users%>
             <%}%>    
         </table>
+
         <br>
         <br>
-
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>userId</th>
-                    <th>userLogin</th>
-                    <th>userRole</th>
-                    <th>userPasswd</th>
-                    <th>userMark</th>
-                    <th>empId</th>
-                    <th>userIdUsers</th>
-                    <th>empSurname</th>
-                    <th>empName</th>
-                    <th>empMidName</th>
-                    <th>posIdPosition</th>
-                    <th>positionId</th>
-                    <th>position</th>
-                </tr>
-            </thead>
-
-            <%
-                for (UserJoinThree us : listReadUser) {
-
-                    users = us.toHtmlStringTABLEtest();
-            %>
-            <%=users%>
-            <%}%>    
-        </table>
-        <br>
-        <br>
-
-
-
 
         <form method="POST" action="AdminUpdateServlet">
 
@@ -111,7 +80,6 @@
                         </td>
                         <td>Запись с данным ID можно ОБНОВИТЬ или УДАЛИТЬ</td>
                     </tr>
-
 
                     <tr>
                         <td>Введите новый логин</td>
@@ -183,11 +151,11 @@
                         </td>
                         <td>Необязательное поле</td>
                     </tr>
-                    
+
                     <tr>
-                        
+
                     </tr>
-                    
+
                     <tr>
                         <td> 
                             <input type="submit" value="Обновить" name="update" /> 
@@ -209,12 +177,14 @@
             <%=answerUpdateServ%>
             <%}%>
 
-    </form>
+            <br>
+            <br>
+        </form>
 
-    <form method="GET" action="AdminServlet">
-        <input type="submit" value="Создать новую должность" name="newPosition" />
-    </form>
+        <form method="GET" action="AdminServlet">
+            <input type="submit" value="Создать новую должность" name="newPosition" />
+        </form>
 
-    <%@include file="WEB-INF/jspf/footer_admin.jspf" %>
-</body>
+        <%@include file="WEB-INF/jspf/footer_admin.jspf" %>
+    </body>
 </html>

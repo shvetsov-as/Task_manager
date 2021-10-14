@@ -97,6 +97,18 @@ CREATE OR REPLACE VIEW public.user_join_three
      JOIN (employee
      JOIN positions ON employee.pos_id_position = positions.position_id) ON users.user_id = employee.user_id_users;
 
+CREATE OR REPLACE VIEW public.task
+    AS
+     SELECT tasks.task_id,
+    tasks.emp_id_employee,
+    tasks.task_type,
+    tasks.task_name,
+    tasks.task_date_from,
+    tasks.task_date_to,
+    tasks.task_todo,
+    tasks.task_note,
+    tasks.task_is_compl
+   FROM tasks;
 
 CREATE OR REPLACE RULE "INSERT" AS
     ON INSERT TO public.user_join_three

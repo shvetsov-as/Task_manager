@@ -5,6 +5,7 @@
  */
 package bll_data;
 
+import dal.Task;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface CreateTaskBeanLocal {
+    
+    boolean createTask(Task task);// add new task add status
     
 }

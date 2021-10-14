@@ -28,6 +28,8 @@ public interface EmployeeFacadeLocal {
 
     List<Employee> findRange(int[] range);
 
+    Integer findEmpIDbyFullName(String surname, String name, String midname); //to get employee id by its full name
+
     int count();
-    
+
 }

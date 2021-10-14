@@ -187,4 +187,10 @@ public class Users implements Serializable {
                 + "<td align=\"center\">" + userLogin + "</td> "
                 + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td></tr>";
     }
+    
+    public String toHtmlStringTABLEpart() {////////////////////////////////////////////
+        return "<tr> <td align=\"center\">" + userId + "</td> "
+                + "<td align=\"center\">" + userLogin + "</td> "
+                + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td>";
+    }
 }
