@@ -19,7 +19,7 @@
         <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h3>Manager find page</h3>
+        <h3>Manager create page</h3>
 
         <br>
         <p>Все задачи в базе</p>
@@ -110,18 +110,18 @@
                             </select>
                         </td>
                         <td>
-                            <input  type="date" name="dateFrom" value="2021-01-01"
+                            <input  type="date" name="dateFrom" value=""
                                     max="2100-01-01" min="1970-01-01" required>
                         </td>
                         <td>
-                            <input  type="date" name="dateTo" value="2021-01-01"
+                            <input  type="date" name="dateTo" value=""
                                     max="2100-01-01" min="1970-01-01" required>
                         </td>
                         <td>
-                            <input type="text" name="taskToDo" value="" placeholder="до 1200 символов" required maxlength="1200"/>
+                            <input type="text" name="taskToDo" value="" placeholder="до 1200 символов" maxlength="1200"/>
                         </td>
                         <td>
-                            <input type="text" name="taskNote" value="" placeholder="до 1200 символов" required maxlength="1200"/>
+                            <input type="text" name="taskNote" value="" placeholder="до 1200 символов" maxlength="1200"/>
                         </td>
                         <td>
                             <select name="employee" required>

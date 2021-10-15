@@ -208,5 +208,9 @@ public class Tasks implements Serializable {
     public String toHtmlString() {
         return "<li> dal.Tasks[ taskId=" + taskId + " ] </li>";
     }
+    
+    public String toHtmlStringBUTTONid() {
+        return "<option>" + taskId + "</option>";
+    }
 
 }

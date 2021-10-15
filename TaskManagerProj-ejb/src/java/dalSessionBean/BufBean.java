@@ -10,6 +10,7 @@ import bll_user.ReadUserBeanLocal;
 import dal.EmpJoinTask;
 import dal.Employee;
 import dal.Positions;
+import dal.Tasks;
 import dal.UserJoinThree;
 import dal.Users;
 import java.beans.*;
@@ -93,6 +94,12 @@ public class BufBean implements Serializable {
     public List<EmpJoinTask> allTasks() {//to get list of all incompleted tasks on jsp page
         List<EmpJoinTask> taskList;
         taskList = readTaskBean.allTasks();
+        return taskList;
+    }
+    
+    public List<Tasks> allTasksFromTasks() {//to get list of all IDs tasks on jsp page
+        List<Tasks> taskList;
+        taskList = readTaskBean.allTasksFromTasks();
         return taskList;
     }
 

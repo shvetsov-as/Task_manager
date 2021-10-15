@@ -6,7 +6,9 @@
 package bll_data;
 
 import dal.EmpJoinTask;
+import dal.Tasks;
 import dalSessionBean.EmpJoinTaskFacadeLocal;
+import dalSessionBean.TasksFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -18,6 +20,9 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class ReadTaskBean implements ReadTaskBeanLocal {
+
+    @EJB
+    private TasksFacadeLocal tasksFacade;
 
     @EJB
     private EmpJoinTaskFacadeLocal empJoinTaskFacade;
@@ -54,5 +59,10 @@ public class ReadTaskBean implements ReadTaskBeanLocal {
     public List<EmpJoinTask> allTasks() {//to get list of all  tasks
 
         return empJoinTaskFacade.findAll();
+    }
+
+    @Override
+    public List<Tasks> allTasksFromTasks() {//to get list of all IDs tasks on jsp page
+        return tasksFacade.findAll();
     }
 }

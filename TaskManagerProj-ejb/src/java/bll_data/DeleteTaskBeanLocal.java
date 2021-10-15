@@ -13,5 +13,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface DeleteTaskBeanLocal {
+    boolean deleteTask(Integer taskID);// delete task by id
     
 }

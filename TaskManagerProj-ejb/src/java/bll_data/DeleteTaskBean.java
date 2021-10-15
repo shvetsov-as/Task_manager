@@ -5,6 +5,8 @@
  */
 package bll_data;
 
+import dalSessionBean.TasksFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,18 @@ import javax.ejb.Stateless;
 @Stateless
 public class DeleteTaskBean implements DeleteTaskBeanLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @EJB
+    private TasksFacadeLocal tasksFacade;
+
+    @Override
+    public boolean deleteTask(Integer taskID) {// delete task by id
+        if (tasksFacade.find(taskID).getTaskId().equals(taskID)) {
+            tasksFacade.remove(tasksFacade.find(taskID));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+   
 }
