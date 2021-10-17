@@ -192,10 +192,25 @@ public class Tasks implements Serializable {
 
     @Override
     public String toString() {
-        return "dal.Tasks[ taskId=" + taskId + " ]";
+        return "Tasks{" + "taskId=" + taskId 
+                + ", taskType=" + taskType 
+                + ", taskName=" + taskName 
+                + ", taskDateFrom=" + taskDateFrom 
+                + ", taskDateTo=" + taskDateTo 
+                + ", taskTodo=" + taskTodo 
+                + ", taskNote=" + taskNote 
+                + ", taskIsCompl=" + taskIsCompl 
+                + ", empIdEmployee=" + empIdEmployee + '}';
     }
+
+   
     
     public String toHtmlString() {
         return "<li> dal.Tasks[ taskId=" + taskId + " ] </li>";
     }
+    
+    public String toHtmlStringBUTTONid() {
+        return "<option>" + taskId + "</option>";
+    }
+
 }

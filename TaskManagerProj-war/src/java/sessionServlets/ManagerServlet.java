@@ -5,6 +5,7 @@
  */
 package sessionServlets;
 
+import dal.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,18 +38,32 @@ public class ManagerServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
+        String findTask = request.getParameter("findTask");
+        String createTask = request.getParameter("createTask");
+        String updateTask = request.getParameter("updateTask");
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ManagerServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ManagerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        if (session.isNew() || !((Role) session.getAttribute("role")).equals(Role.MANAGER)) {
+            String s = "Время Вашей сессии истекло";// internal error? null pointer exc !((Role) session.getAttribute("role")).equals(Role.ADMIN); session.isNew() didnt work
+            session.invalidate();
+            request.setAttribute("answerInputCheck", s);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+
+            if (findTask != null) {
+                request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
+
+            }
+
+            if (createTask != null) {
+                request.getRequestDispatcher("manager_menu_create.jsp").forward(request, response);
+
+            }
+
+            if (updateTask != null) {
+                request.getRequestDispatcher("manager_menu_update.jsp").forward(request, response);
+
+            }
+
         }
     }
 

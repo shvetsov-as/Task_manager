@@ -13,7 +13,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Admin </title>
@@ -22,43 +22,20 @@
         <%%>
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <h3>Admin menu create user</h3>
-        
+
         <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ЛОГИН</th>
-                    <th>РОЛЬ</th>
-                    <th>ФАМИЛИЯ</th>
-                    <th>ИМЯ</th>
-                    <th>ОТЧЕСТВО</th>
-                    <th>ДОЛЖНОСТЬ</th>
-                </tr>
-            </thead>
 
-            
-
-            <%
+        <%
 //            response.setHeader("Cache-Control", "no-cache");
 //            response.setHeader("Pragma", "no-cache");
 //            response.setDateHeader("Expires", 0);
             //response.setIntHeader("Refresh", 2);
-            
-                List<UserJoinThree> listReadUser = bufBean.userJoinThree();
-            String users;
-            for (UserJoinThree us : listReadUser) {
 
-                users = us.toHtmlStringTABLE();
         %>
-        <%=users%>
-        <%}%>    
-        </table>
+
         <br>
         <br>
-        
-        
         <table border="1">
             <thead>
                 <tr>
@@ -72,70 +49,19 @@
                 </tr>
             </thead>
 
-            
 
-            <% 
-                List<Users> listReadUsers = bufBean.findAllusers();
-                List<Employee> listReadEmp = bufBean.allEmployee();
-                
-            String user;
-            String employee;
-            String position;
-            for (Users u : listReadUsers) {
 
-                user = u.toHtmlStringTABLE();
-        %>
-        <%=user%>
-        <%}%>
-        <%
-            for (Employee e : listReadEmp) {
+            <%List<UserJoinThree> listReadUser = bufBean.userJoinThree();
+                String users;
+                for (UserJoinThree us : listReadUser) {
 
-                employee = e.toHtmlStringTABLE();
-                position = "<tr>" + bufBean.positionNameByID(e.getPosIdPosition().getPositionId()) + "</tr>";
-                
-        %>
-        <%=employee%>
-        <%=position%>
-        <%}%>
-        
-            
-        </table>
+                    users = us.toHtmlStringTABLE();
+            %>
+            <%=users%>
+            <%}%>  
+        </table>  
         <br>
         <br>
-        
-        
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>userId</th>
-                    <th>userLogin</th>
-                    <th>userRole</th>
-                    <th>userPasswd</th>
-                    <th>userMark</th>
-                    <th>empId</th>
-                    <th>userIdUsers</th>
-                    <th>empSurname</th>
-                    <th>empName</th>
-                    <th>empMidName</th>
-                    <th>posIdPosition</th>
-                    <th>positionId</th>
-                    <th>position</th>
-                </tr>
-            </thead>
-
-            <%
-            for (UserJoinThree us : listReadUser) {
-
-                users = us.toHtmlStringTABLEtest();
-        %>
-        <%=users%>
-        <%}%>    
-        </table>
-        <br>
-        <br>
-        
-        
-
         <form method="POST" action="AdminCreateServlet">
 
             <table border="1" cellspacing="1" cellpadding="1">
@@ -211,19 +137,19 @@
                         </td>
                         <td>Обязательное поле</td>
                     </tr>
-                    
+
                     <tr> 
                     </tr>
-                    
+
                     <tr>
                         <td> 
-                            
+
                         </td>
                         <td>
                             <input type="submit" value="Создать" name="create" />
                         </td>
                         <td>
-                            <input type="reset"  value="Очистить" name=""/>
+                            <input type="reset"  value="Очистить" name="reset"/>
                         </td>
                     </tr>
                 </tbody>
@@ -235,40 +161,10 @@
             %>
             <%=answerCreateServ%>
             <%}%>
-            
-            
-            <table border="1">
-            <thead>
-                <tr>
-                    <th>userId</th>
-                    <th>userLogin</th>
-                    <th>userRole</th>
-                    <th>userPasswd</th>
-                    <th>userMark</th>
-                    <th>empId</th>
-                    <th>userIdUsers</th>
-                    <th>empSurname</th>
-                    <th>empName</th>
-                    <th>empMidName</th>
-                    <th>posIdPosition</th>
-                    <th>positionId</th>
-                    <th>position</th>
-                </tr>
-            </thead>
 
-            <% 
-                if (answerCreateServ != null) {
-                List<UserJoinThree> listReadtest = bufBean.userJoinThree();
-            String test;
-            for (UserJoinThree us : listReadtest) {
 
-                test = us.toHtmlStringTABLEtest();
-        %>
-        <%=test%>
-        <%}}%>    
-        </table>
-        <br>
-        <br>
+            <br>
+            <br>
 
         </form>
 

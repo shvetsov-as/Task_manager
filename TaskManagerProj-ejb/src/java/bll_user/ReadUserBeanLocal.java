@@ -35,6 +35,8 @@ public interface ReadUserBeanLocal {
     List<UserJoinThree> userJoinThree();//to get list of all users with employee and position
     
     Integer findPosIDbyName(String posName);//to get position id by position name from positions
+    
+    Integer findEmpIDbyFullName(String surname, String name, String midname);//to get employee id by its full name
 
     //check user by login
     //boolean userLoginMatches (String login);

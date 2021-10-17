@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Employee.findByEmpId", query = "SELECT e FROM Employee e WHERE e.empId = :empId")
     , @NamedQuery(name = "Employee.findByEmpSurname", query = "SELECT e FROM Employee e WHERE e.empSurname = :empSurname")
     , @NamedQuery(name = "Employee.findByEmpName", query = "SELECT e FROM Employee e WHERE e.empName = :empName")
+    , @NamedQuery(name = "Employee.findByEmpFullName", query = "SELECT e FROM Employee e WHERE e.empSurname = :empSurname AND e.empName = :empName AND e.empMidName = :empMidName")
     , @NamedQuery(name = "Employee.findByEmpMidName", query = "SELECT e FROM Employee e WHERE e.empMidName = :empMidName")})
 public class Employee implements Serializable {
 
@@ -175,9 +176,19 @@ public class Employee implements Serializable {
                 + "<td align=\"center\">" + empName + "</td> "
                 + "<td align=\"center\">" + empMidName + "</td> </tr>";
     }
-    
+
+    public String toHtmlStringTABLEpart() {
+        return "<td align=\"center\">" + empSurname + "</td> "
+                + "<td align=\"center\">" + empName + "</td> "
+                + "<td align=\"center\">" + empMidName + "</td>";
+    }
+
     public String toHtmlStringTABLEsrnamNam() {
-        return "<tr> <td align=\"center\">" + empSurname + " " + empName + "</td> </tr>";
+        return "<tr> <td align=\"center\">" + empSurname + " " + empName + " " + empMidName + "</td> </tr>";
+    }
+
+    public String toHtmlStringTABLEbutton() {
+        return "<option>" + empSurname + " " + empName + " " + empMidName + "</option>";
     }
 
 }

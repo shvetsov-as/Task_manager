@@ -5,6 +5,9 @@
  */
 package bll_data;
 
+import dal.Task;
+import dalSessionBean.TaskFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -13,6 +16,24 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class CreateTaskBean implements CreateTaskBeanLocal {
+
+    @EJB
+    private TaskFacadeLocal taskFacade;
+
+    @Override
+    public boolean createTask(Task task) { // add new task and check add status
+        
+        Integer begin = taskFacade.count();
+        Integer end;
+
+        taskFacade.create(task);
+        end = taskFacade.count();
+
+        if ((Integer.compare(begin, end)) >= 0) {// not added
+            return false;
+        }
+        return true;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

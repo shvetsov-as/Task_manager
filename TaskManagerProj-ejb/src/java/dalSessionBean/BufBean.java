@@ -10,10 +10,12 @@ import bll_user.ReadUserBeanLocal;
 import dal.EmpJoinTask;
 import dal.Employee;
 import dal.Positions;
+import dal.Tasks;
 import dal.UserJoinThree;
 import dal.Users;
 import java.beans.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,26 +72,36 @@ public class BufBean implements Serializable {
         posList = readUserBean.allPositions();
         return posList;
     }
-    
+
     public String positionNameByID(Integer posID) {//to get position name by its ID on jsp page
         String posName;
-        posName = readUserBean.positionNameByID(posID);
+        posName = "<td>" + readUserBean.positionNameByID(posID) + "</td></tr>";
         return posName;
     }
-    
+
     public List<Employee> allEmployee() {//to get list of all employees on jsp page
         List<Employee> empList;
         empList = readUserBean.allEmployee();
         return empList;
     }
-    
+
     public List<EmpJoinTask> allIncompTasks() {//to get list of all incompleted tasks on jsp page
         List<EmpJoinTask> taskList;
         taskList = readTaskBean.allIncompTasks();
         return taskList;
     }
     
+    public List<EmpJoinTask> allTasks() {//to get list of all incompleted tasks on jsp page
+        List<EmpJoinTask> taskList;
+        taskList = readTaskBean.allTasks();
+        return taskList;
+    }
     
+    public List<Tasks> allTasksFromTasks() {//to get list of all IDs tasks on jsp page
+        List<Tasks> taskList;
+        taskList = readTaskBean.allTasksFromTasks();
+        return taskList;
+    }
 
 //    public List<Users> joinUserEmployee() {
 //        List<Users> listEmp;
@@ -101,6 +113,30 @@ public class BufBean implements Serializable {
         listUsers = readUserBean.userJoinThree();
         return listUsers;
     }
+
+//    public List<String> userJoin() { to be tested
+//
+//        String res = "";
+//
+//        List<String> listRes = new ArrayList<>();
+//        List<Users> listReadUsers = findAllusers();
+//        List<Employee> listReadEmp = allEmployee();
+//
+//        for (int i = 0; i < listReadUsers.size(); i++) {
+//
+//            for (int j = 0; j < listReadUsers.size(); j++) {
+//                if (listReadUsers.get(i).getUserId().equals(listReadEmp.get(j).getUserIdUsers().getUserId())) {
+//                    res = listReadUsers.get(i).toHtmlStringTABLEpart() + listReadEmp.get(j).toHtmlStringTABLEpart() + positionNameByID(listReadEmp.get(j).getPosIdPosition().getPositionId());
+//                    System.out.println(res + "*****************************************************");
+//                    listRes.add(i, res);
+//                    break;
+//                }
+//            }
+//            
+//        }
+//
+//        return listRes;
+//    }
 
     private ReadUserBeanLocal lookupReadUserBeanLocal() {
         try {

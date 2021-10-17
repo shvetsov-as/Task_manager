@@ -5,6 +5,7 @@
  */
 package bll_data;
 
+import dal.Task;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface UpdateTaskBeanLocal {
+    boolean updateTask(Task taskNewInfo);// to update task by id
     
 }

@@ -95,7 +95,9 @@ public class ReadUserBean implements ReadUserBeanLocal {
     
     @Override
     public List<Employee> allEmployee() { //to get list of all employees on jsp page
-        return employeeFacade.findAll();
+        List<Employee> listEmp;
+        listEmp = employeeFacade.findAll();
+        return listEmp;
     }
     
     
@@ -116,6 +118,15 @@ public class ReadUserBean implements ReadUserBeanLocal {
         String posName;
         posName = positionsFacade.find(posID).getPosition();
         return posName;
+    }
+
+    @Override
+    public Integer findEmpIDbyFullName(String surname, String name, String midname) {//to get employee id by its full name
+        
+        Integer empID = 0;
+        empID = employeeFacade.findEmpIDbyFullName(surname, name, midname);
+
+        return empID;
     }
 
     
