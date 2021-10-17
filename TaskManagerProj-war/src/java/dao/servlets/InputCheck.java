@@ -65,7 +65,7 @@ public class InputCheck extends HttpServlet {
             session.setAttribute("pass", pass);
 
             request.getRequestDispatcher("page1.jsp").forward(request, response);
-            request.getRequestDispatcher("/Login").forward(request, response);
+//            request.getRequestDispatcher("/Login").forward(request, response);/////////////////////////////////
 //            try (PrintWriter out = response.getWriter()) {
 //                /* TODO output your page here. You may use following sample code. */
 //                out.println("<!DOCTYPE html>");

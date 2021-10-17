@@ -30,4 +30,6 @@ public interface EmpJoinTaskFacadeLocal {
 
     int count();
     
+    List<EmpJoinTask> findByParameter(EmpJoinTask taskParameters, String query);//to get List of tasks by parameters
+    
 }

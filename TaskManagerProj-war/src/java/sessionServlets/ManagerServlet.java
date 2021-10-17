@@ -50,7 +50,7 @@ public class ManagerServlet extends HttpServlet {
         } else {
 
             if (findTask != null) {
-                request.getRequestDispatcher("manager_menu_find.jsp").forward(request, response);
+                request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
 
             }
 

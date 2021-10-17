@@ -14,8 +14,8 @@ import javax.ejb.Local;
  * @author User
  */
 @Local
-public interface UpdateUserBeanLocal { // to update poition by id
-    boolean updatePosition(Integer positionID, String positionName);
-    boolean updateUser(Integer userID, UserJoinThree userNewInfo);
+public interface UpdateUserBeanLocal { 
+    boolean updatePosition(Integer positionID, String positionName);// to update poition by id
+    boolean updateUser(Integer userID, UserJoinThree userNewInfo);// to update user by id
     
 }

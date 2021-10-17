@@ -142,4 +142,9 @@ public class Task implements Serializable {
         this.taskIsCompl = taskIsCompl;
     }
 
+    @Override
+    public String toString() {
+        return "Task{" + "taskId=" + taskId + ", empIdEmployee=" + empIdEmployee + ", taskType=" + taskType + ", taskName=" + taskName + ", taskDateFrom=" + taskDateFrom + ", taskDateTo=" + taskDateTo + ", taskTodo=" + taskTodo + ", taskNote=" + taskNote + ", taskIsCompl=" + taskIsCompl + '}';
+    }
+
 }

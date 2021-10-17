@@ -33,8 +33,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "ManagerReadServlet", urlPatterns = {"/ManagerReadServlet"})
-public class ManagerReadServlet extends HttpServlet {
+@WebServlet(name = "UserReadServlet", urlPatterns = {"/UserReadServlet"})
+public class UserReadServlet extends HttpServlet {
 
     ReadTaskBeanLocal readTaskBean = lookupReadTaskBeanLocal();
 
@@ -71,13 +71,13 @@ public class ManagerReadServlet extends HttpServlet {
         if (showAll != null) {
             String s = "show";
             request.setAttribute("showAlltask", s);
-            request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
+            request.getRequestDispatcher("user_menu_read.jsp").forward(request, response);
         }
 
         if (hideAll != null) {
             String showAlltask = null;
             request.setAttribute("showAlltask", showAlltask);
-            request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
+            request.getRequestDispatcher("user_menu_read.jsp").forward(request, response);
         }
 
         if (find != null) {
@@ -182,29 +182,21 @@ public class ManagerReadServlet extends HttpServlet {
             if (count == 0) {
                 String s = "Параметры поиска не заданы.";
                 request.setAttribute("answerReadServ", s);
-                request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
+                request.getRequestDispatcher("user_menu_read.jsp").forward(request, response);
             } else {
-
-                System.out.println(task.toString());
-                System.out.println("################");
                 List<EmpJoinTask> listSearchRes = readTaskBean.findByParameter(task);
 
                 if (listSearchRes.size() > 0) {//do we have a result of search?
                     request.setAttribute("find", find);
                     request.setAttribute("listSearchRes", listSearchRes);
-                    request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
+                    request.getRequestDispatcher("user_menu_read.jsp").forward(request, response);
                 } else {
                     String s = "Результат поиска отсутствует. Попробуйте изменить параметры.";
                     request.setAttribute("answerReadServ", s);
-                    request.getRequestDispatcher("manager_menu_read.jsp").forward(request, response);
+                    request.getRequestDispatcher("user_menu_read.jsp").forward(request, response);
                 }
 
-                for (EmpJoinTask res : listSearchRes) {
-                    System.out.println(res.toString() + "*************************************************");
-
-                }
-                System.out.println(listSearchRes.size() + "*************************************************");
-            }
+            }//else if (count == 0)
 
 
         }//if (find != null)

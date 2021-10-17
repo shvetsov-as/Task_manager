@@ -4,7 +4,6 @@
     Author     : User
 --%>
 
-<%@page import="dal.Tasks"%>
 <%@page import="dal.Task_type"%>
 <%@page import="dal.Employee"%>
 <%@page import="dal.EmpJoinTask"%>
@@ -20,13 +19,13 @@
         <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h3>Manager update page</h3>
+        <h3>User read page</h3>
 
         <br>
         <p>Все задачи в базе</p>
         <br>
 
-        <form method="GET" action="ManagerUpdateServlet">
+        <form method="GET" action="UserReadServlet">
             <table border="1" width="1" cellspacing="1" cellpadding="1">
 
                 <tbody>
@@ -46,7 +45,6 @@
             String showAlltask = (String) request.getAttribute("showAlltask");
             if (showAlltask != null) {
         %>
-
         <br>
         <table border="1">
             <thead>
@@ -74,21 +72,23 @@
             </tbody>
         </table>
         <%}%>
+        
+        
+        
         <br>
         <br>
-        <p>Меню редактирования/удаления задачи</p>
+        <p>Меню поиска задачи</p>
         <br>
 
 
-        <form method="GET" action="ManagerUpdateServlet">
+        <form method="GET" action="UserReadServlet">
             <table border="1">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>НАИМЕНОВАНИЕ</th>
                         <th>ТИП</th>
-                        <th>ДАТА ПОСТУПЛЕНИЯ</th>
-                        <th>ДАТА ИСПОЛНЕНИЯ</th>
+                        <th>НАЧИНАЯ С ДАТЫ</th>
+                        <th>ЗАКАНЧИВАЯ ДАТОЙ</th>
                         <th>ЗАДАЧИ К ИСПОЛНЕНИЮ</th>
                         <th>ПРИМЕЧАНИЕ</th>
                         <th>ИСПОЛНИТЕЛЬ</th>
@@ -97,18 +97,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            <select name="taskID" required>
-                                <option></option>
-                                <%List<Tasks> listTask = bufBean.allTasksFromTasks();
-                                    String taskOption;
-                                    for (Tasks t : listTask) {
-                                        taskOption = t.toHtmlStringBUTTONid();
-                                %>
-                                <%=taskOption%>
-                                <%}%>
-                            </select>
-                        </td>
                         <td>
                             <input type="text" name="taskName" value="" placeholder="Вх. № 31/12 - 4" maxlength="50"/>
                         </td>
@@ -132,10 +120,10 @@
                                     max="2100-01-01" min="1970-01-01">
                         </td>
                         <td>
-                            <input type="text" name="taskToDo" value="" placeholder="до 1200 символов" maxlength="1200"/>
+                            <input type="text" name="taskToDo" value="" maxlength="1200"/>
                         </td>
                         <td>
-                            <input type="text" name="taskNote" value="" placeholder="до 1200 символов" maxlength="1200"/>
+                            <input type="text" name="taskNote" value="" maxlength="1200"/>
                         </td>
                         <td>
                             <select name="employee">
@@ -150,7 +138,7 @@
                             </select>
                         </td>
                         <td>
-                            <select name="status">
+                            <select name="status" required>
                                 <option></option>
                                 <option>Выполнено</option>
                                 <option>Не выполнено</option>
@@ -163,14 +151,12 @@
             <table border="1" width="1" cellspacing="1" cellpadding="1">
                 <tbody>
                     <tr>
+
                         <td>
-                            <input type="submit" value="Редактировать" name="update" />
+                            <input type="submit" value="Поиск" name="find" />
                         </td>
                         <td>
                             <input type="reset" value="Очистить" />
-                        </td>
-                        <td>
-                            <input type="submit" value="Удалить" name="delete" />
                         </td>
                     </tr>
                 </tbody>
@@ -180,16 +166,45 @@
 
 
         <%
-            String answerUpdateServ = (String) request.getAttribute("answerUpdateServ");
-            if (answerUpdateServ != null) {
+            String answerReadServ = (String) request.getAttribute("answerReadServ");
+            if (answerReadServ != null) {
         %>
-        <%=answerUpdateServ%>
+        <%=answerReadServ%>
+        <%}%>
+        
+        <%
+            String find = (String) request.getAttribute("find");
+            List<EmpJoinTask> listSearchRes = (List) request.getAttribute("listSearchRes");
+            if (find != null) {
+               %> 
+                <br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>НАИМЕНОВАНИЕ</th>
+                    <th>ТИП</th>
+                    <th>ДАТА ПОСТУПЛЕНИЯ</th>
+                    <th>ДАТА ИСПОЛНЕНИЯ</th>
+                    <th>ЗАДАЧИ К ИСПОЛНЕНИЮ</th>
+                    <th>ПРИМЕЧАНИЕ</th>
+                    <th>ИСПОЛНИТЕЛЬ</th>
+                    <th>СТАТУС</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    String searchRes;
+                    for (EmpJoinTask ejt : listSearchRes) {
+
+                        searchRes = ejt.toHtmlStringTABLE();
+                %>
+                <%=searchRes%>
+                <%}%>
+            </tbody>
+        </table>
         <%}%>
 
-
-        <%@include file="WEB-INF/jspf/footer_manager.jspf" %>
-
-
-
+        <%@include file="WEB-INF/jspf/footer_user.jspf" %>
     </body>
 </html>
