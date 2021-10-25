@@ -16,12 +16,12 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Admin </title>
+        <title>Администратор</title>
     </head>
     <body>
         <%%>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h3>Admin menu create user</h3>
+        <h3>Администратор. Создание учетных записей.</h3>
 
         <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
 

@@ -11,13 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> User </title>
+        <title>Пользователь</title>
     </head>
     <body>
-        
-        <h3>User menu page</h3>
-        
         <%@include file="WEB-INF/jspf/header.jspf" %>
+        <h3>Пользователь. Главное меню.</h3>
+        
+        
         <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
         <br>
         <h4>СПИСОК АКТИВНЫХ ЗАДАЧ</h4>

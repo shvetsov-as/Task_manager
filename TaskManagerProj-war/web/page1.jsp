@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Защита</title>
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <table border="1" width="500" cellspacing="1" cellpadding="1">
+        <table border="0" width="500" cellspacing="1" cellpadding="1">
 
             <tbody>
 

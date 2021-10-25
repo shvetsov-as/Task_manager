@@ -178,17 +178,17 @@ public class Users implements Serializable {
                 + "<td align=\"center\">" + userRole + " </td>";
     }
     
-    public String toHtmlStringBUTTONid() {////////////////////////////////////////////
+    public String toHtmlStringBUTTONid() {
         return "<option>" + userId + "</option>";
     }
 
-    public String toHtmlStringTABLE() {////////////////////////////////////////////
+    public String toHtmlStringTABLE() {
         return "<tr> <td align=\"center\">" + userId + "</td> "
                 + "<td align=\"center\">" + userLogin + "</td> "
                 + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td></tr>";
     }
     
-    public String toHtmlStringTABLEpart() {////////////////////////////////////////////
+    public String toHtmlStringTABLEpart() {
         return "<tr> <td align=\"center\">" + userId + "</td> "
                 + "<td align=\"center\">" + userLogin + "</td> "
                 + "<td align=\"center\">" + Role.userRoleToString(userRole) + "</td>";

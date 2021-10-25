@@ -13,13 +13,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Manager </title>
+        <title>Пользователь</title>
     </head>
     <body>
         <jsp:useBean id="bufBean" scope="page" class="dalSessionBean.BufBean" />
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h3>User read page</h3>
+        <h3>Пользователь. Поиск информации.</h3>
 
         <br>
         <p>Все задачи в базе</p>

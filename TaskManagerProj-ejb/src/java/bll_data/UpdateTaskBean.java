@@ -25,61 +25,11 @@ public class UpdateTaskBean implements UpdateTaskBeanLocal {
         Task task;
         task = taskFacade.find(taskNewInfo.getTaskId());
 
-        
-        System.out.println("*****************************************************task = taskFacade.find = " + task.toString());
-        System.out.println("*****************************************************task = taskNewInfo = " + taskNewInfo.toString());
-        
         if (!task.getTaskId().toString().isEmpty()) {
             taskFacade.edit(taskNewInfo);
-            
 
             return true;
         }
         return false;
     }
-    
 }
-    
-// Task task;
-//        task = taskFacade.find(taskNewInfo.getTaskId());
-//        if (!task.getTaskId().toString().isEmpty()) {
-//            
-//            if (taskNewInfo.getTaskName() != null) {
-//                task.setTaskName(taskNewInfo.getTaskName());
-//            }
-//
-//            if (taskNewInfo.getEmpIdEmployee() != null) {
-//                task.setEmpIdEmployee(taskNewInfo.getEmpIdEmployee());
-//            }
-//
-//            if (taskNewInfo.getTaskIsCompl() != null) {
-//                task.setTaskIsCompl(taskNewInfo.getTaskIsCompl());
-//            }
-//
-//            if (taskNewInfo.getTaskDateFrom() != null) {
-//                task.setTaskDateFrom(taskNewInfo.getTaskDateFrom());
-//            }
-//
-//            if (taskNewInfo.getTaskDateTo() != null) {
-//                task.setTaskDateTo(taskNewInfo.getTaskDateTo());
-//            }
-//
-//            if (taskNewInfo.getTaskNote() != null) {
-//                task.setTaskNote(taskNewInfo.getTaskNote());
-//            }
-//
-//            if (taskNewInfo.getTaskTodo() != null) {
-//                task.setTaskTodo(taskNewInfo.getTaskTodo());
-//            }
-//            
-//            if (taskNewInfo.getTaskType() != null) {
-//                task.setTaskType(taskNewInfo.getTaskType());
-//            }
-//
-//            taskFacade.edit(task);
-//            return true;
-//        }
-//        return false;
-//    }
-
-

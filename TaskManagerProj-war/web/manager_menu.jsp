@@ -11,13 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Manager </title>
+        <title>Менеджер</title>
     </head>
     <body>
 
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h3>Manager menu page</h3>
+        <h3>Менеджер. Главное меню.</h3>
 
         <br>
         <h4>СПИСОК АКТИВНЫХ ЗАДАЧ</h4>

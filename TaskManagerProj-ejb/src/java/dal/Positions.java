@@ -119,20 +119,20 @@ public class Positions implements Serializable {
         return "<li> КОД ДОЛЖНОСТИ [ " + positionId + " ] " + "НАИМЕНОВАНИЕ [ " + position + " ] </li>";
     }
     
-    public String toHtmlStringTABLE() {////////////////////////////////////////////
+    public String toHtmlStringTABLE() {
         return "<tr> <td align=\"center\">" + positionId + "</td> "
                 + "<td align=\"center\">" + position + "</td> </tr>";
     }
     
-    public String toHtmlStringTABLEnoID() {////////////////////////////////////////////
+    public String toHtmlStringTABLEnoID() {
         return "<tr> <td align=\"center\">" + position + "</td> </tr>";
     }
     
-    public String toHtmlStringBUTTON() {////////////////////////////////////////////
+    public String toHtmlStringBUTTON() {
         return "<option>" + positionId + "</option>";
     }
     
-    public String toHtmlStringBUTTONname() {////////////////////////////////////////////
+    public String toHtmlStringBUTTONname() {
         return "<option>" + position + "</option>";
     }
 }

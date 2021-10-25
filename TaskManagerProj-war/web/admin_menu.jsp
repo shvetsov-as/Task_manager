@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-        <title> Admin </title>
+        <title>Администратор</title>
     </head>
 
     <%@include file="WEB-INF/jspf/header.jspf" %>
@@ -21,7 +21,7 @@
     if(session.isNew()||session == null){
         response.sendRedirect("index.jsp");
 }%>--%>
-    <h3>Admin menu page</h3>
+    <h3>Администратор. Главное меню.</h3>
 
     <br>
 
